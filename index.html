@@ -770,13 +770,17 @@
           <div>• Aeroambulancias: <b>(0212) 993.25.41 / 992.89.80</b></div>
           <div>• Rescarven: <b>(0212) 993.69.11 / 993.13.10</b></div>
           <div>• Ambulancia Metropolitana: <b>(0212) 545.45.45</b></div>
+          <div style="margin-top:5px;font-size:9px;font-weight:700;color:#60a5fa">🔥 BOMBEROS:</div>
+          <div>• Bomberos Metropolitanos: <b>(0212) 545.45.45</b></div>
           <div>• Bomberos Chacao: <b>(0212) 265.32.61</b></div>
-          <div>• Bomberos La Guaira: <b>(0212) 332.76.20</b></div>
+          <div>• Bomberos La Guaira: <b>(0212) 332.76.20 / 331.04.45</b></div>
+          <div>• Bomberos Edo. Miranda: <b>(0212) 235.69.67</b></div>
+          <div>• Bomberos Plaza Venezuela: <b>(0212) 793.64.57</b></div>
           <div>• Bomberos El Paraíso: <b>(0212) 481.09.61</b></div>
-          <div>• Prot. Civil (0800): <b>0800-5588427</b></div>
+          <div style="margin-top:5px">• Prot. Civil (0800): <b>0800-5588427</b></div>
           <div>• Brigada Rescate El Ávila: <b>(0212) 615.63.68</b></div>
-          <div>• 🚗 <b>YUMMY:</b> viajes GRATIS a hospitales en Caracas</div>
-          <div>• 📱 <b>DIGITEL:</b> llamadas y SMS gratis 48h</div>
+          <div style="margin-top:5px">• 🚗 <b>YUMMY:</b> viajes GRATIS a hospitales en Caracas</div>
+          <div>• 📱 <b>DIGITEL:</b> llamadas y SMS gratis 48h — Caracas, La Guaira, Morón, Valencia, San Diego, Maracay, San Felipe, Barquisimeto</div>
         </div>
       </details>
     </div>
@@ -830,6 +834,29 @@
             <div style="font-size:9px;color:#64748b">Mapa oficial de daños estructurales</div>
           </div>
         </a>
+      </div>
+    </div>
+
+    <!-- CENTROS DE ACOPIO -->
+    <div class="section">
+      <h3 style="color:#4ade80">📦 Centros de Acopio — #OperaciónTodosConVzla</h3>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:8px">Puedes donar: agua · alimentos no perecederos · insumos médicos · ropa y abrigos</div>
+
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="background:#052e16;border:1px solid #16a34a;border-radius:8px;padding:9px 11px">
+          <div style="font-size:10px;font-weight:700;color:#4ade80;margin-bottom:3px">⛪ Iglesia La Paz — Montalbán I</div>
+          <div style="font-size:9.5px;color:#cbd5e1;line-height:1.6">
+            📍 Montalbán I, Municipio Libertador, Caracas<br>
+            <a href="https://www.google.com/maps?q=10.476,-67.028" target="_blank" style="color:#38bdf8;font-size:9px">🗺 Ver en Google Maps ↗</a>
+          </div>
+        </div>
+        <div style="background:#052e16;border:1px solid #16a34a;border-radius:8px;padding:9px 11px">
+          <div style="font-size:10px;font-weight:700;color:#4ade80;margin-bottom:3px">⛪ Iglesia San Bernardino de Siena</div>
+          <div style="font-size:9.5px;color:#cbd5e1;line-height:1.6">
+            📍 Parroquia San Bernardino, Caracas<br>
+            <a href="https://www.google.com/maps?q=10.510,-66.899" target="_blank" style="color:#38bdf8;font-size:9px">🗺 Ver en Google Maps ↗</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1416,6 +1443,33 @@ const danosConfirmados = [
 // ── Marcadores de daños confirmados (mostrados en panel lateral, no en mapa) ─
 // danosConfirmados.forEach() desactivado — ver sección "Edificios Colapsados" en sidebar
 
+// ── CENTROS DE ACOPIO — OPERACIÓN TODOS CON VZLA ────────────────────────────
+const mkAcopioIcon = () => L.divIcon({
+  className: '',
+  html: `<div style="position:relative;width:32px;height:32px;">
+    <div style="position:absolute;inset:-4px;border-radius:50%;border:2px solid #4ade80;animation:ping 2s ease-out infinite;opacity:.5;"></div>
+    <div style="width:32px;height:32px;background:#052e16;border-radius:8px;border:2px solid #4ade80;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 8px rgba(0,0,0,.7);">📦</div>
+  </div>`,
+  iconSize: [32, 32], iconAnchor: [16, 16]
+});
+
+const acopioPoints = [
+  { ll:[10.476, -67.028], n:'Centro de Acopio — Iglesia La Paz',    dir:'Montalbán I, Municipio Libertador, Caracas', nota:'Operación Todos con Vzla · Acepta: agua, alimentos no perecederos, insumos médicos, ropa y abrigos' },
+  { ll:[10.510, -66.899], n:'Centro de Acopio — Iglesia San Bernardino de Siena', dir:'Parroquia San Bernardino, Caracas', nota:'Operación Todos con Vzla · Acepta: agua, alimentos no perecederos, insumos médicos, ropa y abrigos' },
+];
+
+acopioPoints.forEach(({ ll, n, dir, nota }) => {
+  L.marker(ll, { icon: mkAcopioIcon(), zIndexOffset: 1500 }).addTo(map)
+    .bindPopup(`
+      <div class="pop-title" style="color:#4ade80">📦 ${n}</div>
+      <div class="pop-body">
+        <b>📍</b> ${dir}<br><br>
+        ${nota}
+      </div>
+      <span class="pop-badge" style="background:#052e1690;color:#4ade80;border:1px solid #16a34a">⛪ CENTRO DE ACOPIO ACTIVO</span>
+    `, { maxWidth: 300 });
+});
+
 const CAT_COLORS = {
   'EPICENTRO': '#f43f5e', 'CIUDAD': '#38bdf8',
   'HOSPITAL':  '#0ea5e9', 'IVSS':   '#16a34a', 'INFRA': '#8b5cf6',
@@ -1852,6 +1906,27 @@ layerCtrl.onAdd = function(m) {
 
 // ── NOTICIAS DE CONTINGENCIA ────────────────────────────────────────────────
 const NOTICIAS = [
+  {
+    hora: '25/06/2026 · AHORA',
+    titulo: '📦 OPERACIÓN TODOS CON VZLA — 2 centros de acopio activos en Caracas',
+    resumen: 'Centros habilitados: ⛪ Iglesia La Paz (Montalbán I, Mpio. Libertador) e ⛪ Iglesia San Bernardino de Siena (Parroquia San Bernardino). Aceptan: agua, alimentos no perecederos, insumos médicos, ropa y abrigos.',
+    url: 'https://x.com/hashtag/OperacionTodosConVzla',
+    nuevo: true
+  },
+  {
+    hora: '25/06/2026 · AHORA',
+    titulo: '📱 DIGITEL: llamadas nacionales y SMS gratis 48h — 8 ciudades cubiertas',
+    resumen: 'Digitel habilita por 48 horas llamadas nacionales y SMS sin costo para que las familias puedan comunicarse. Cubre: Caracas, La Guaira, Morón, Valencia, San Diego, Maracay, San Felipe y Barquisimeto.',
+    url: 'https://twitter.com/digitelve',
+    nuevo: true
+  },
+  {
+    hora: '25/06/2026 · AHORA',
+    titulo: '🚒 Números directos de Bomberos publicados — 6 cuerpos activados',
+    resumen: 'Bomberos Metropolitanos: (0212) 545.45.45 · Chacao: (0212) 265.32.61 · La Guaira: (0212) 332.76.20 / 331.04.45 · Edo. Miranda: (0212) 235.69.67 · Plaza Venezuela: (0212) 793.64.57 · El Paraíso: (0212) 481.09.61',
+    url: '',
+    nuevo: true
+  },
   {
     hora: '25/06/2026 · 00:48 hs',
     titulo: '🔴 BALANCE OFICIAL: 32 FALLECIDOS y 700+ HERIDOS — sin contabilizar La Guaira',
