@@ -1457,9 +1457,16 @@ layerCtrl.onAdd = function(m) {
 // ── NOTICIAS DE CONTINGENCIA ────────────────────────────────────────────────
 const NOTICIAS = [
   {
+    hora: '24/06/2026 · 10:24 PM',
+    titulo: '🇻🇪 Presidenta Encargada: "Todo el país cuenta con el Gobierno Nacional para atender las contingencias"',
+    resumen: 'Delcy Rodríguez: "Venezuela cuenta con las autoridades, con los gobiernos regionales, ya desplegados en todo el territorio. Estamos cuantificando pérdidas de viviendas. En unión nacional vamos a superar esta coyuntura."',
+    url: 'https://mazo4f.com/presidenta-encargada-todo-el-pais-cuenta-con-el-gobierno-nacional-para-atender-las-contingencias',
+    nuevo: true
+  },
+  {
     hora: '24/06/2026 · 10:22 PM',
     titulo: '🏥 Presidenta (E) Rodríguez activa red hospitalaria pública y privada para atender afectados',
-    resumen: 'Estados con mayor afectación: Aragua, Carabobo, Falcón, La Guaira, Miranda, Trujillo, Yaracuy y Caracas. Organismos de rescate desplegados.',
+    resumen: 'Estados con mayor afectación: Aragua, Carabobo, Falcón, La Guaira, Miranda, Trujillo, Yaracuy y Caracas. Organismos de rescate desplegados en todo el territorio nacional.',
     url: 'https://mazo4f.com/presidenta-e-rodriguez-anuncia-activacion-de-red-hospitalaria-publica-y-privada-para-atender-a-afectados-por-sismo',
     nuevo: true
   },
@@ -1471,52 +1478,66 @@ const NOTICIAS = [
     nuevo: true
   },
   {
-    hora: '24/06/2026 · 10:04 PM',
-    titulo: '📱 VenApp habilitada para reportar desaparecidos y daños en viviendas por los sismos',
-    resumen: 'La plataforma VenApp está conectada con el Estado Mayor para reporte inmediato de personas desaparecidas y afectaciones a viviendas.',
-    url: 'https://mazo4f.com/gobierno-nacional-pone-a-disposicion-plataforma-venapp-para-reportar-desaparecidos-y-danos-por-sismos-de-este-miercoles',
-    nuevo: true
-  },
-  {
-    hora: '24/06/2026 · 9:58 PM',
-    titulo: '🏫 Suspensión de actividades escolares y labores no esenciales decretada por Presidenta Encargada',
-    resumen: 'Se suspenden clases y actividades laborales no vinculadas a servicios esenciales en los estados afectados para facilitar labores de rescate.',
-    url: 'https://mazo4f.com/presidenta-encargada-anuncia-suspension-de-actividades-escolares-y-labores-no-relacionadas-con-servicios-esenciales',
-    nuevo: false
-  },
-  {
-    hora: '24/06/2026 · 9:44 PM',
-    titulo: '🔥 Ministro Cabello anuncia cierre temporal del servicio de gas en zonas afectadas',
-    resumen: 'Como medida de seguridad post-sismo se suspende el servicio de gas en áreas con mayor afectación para evitar incendios y explosiones.',
-    url: 'https://mazo4f.com/ministro-cabello-anuncia-cierre-temporal-del-servicio-de-gas-para-garantizar-seguridad-tras-sismo-en-el-pais',
-    nuevo: false
-  },
-  {
-    hora: '24/06/2026 · 9:31 PM',
-    titulo: '📢 Ministro Cabello: "Tenemos algunos daños y estamos atendiéndolos" — Balance preliminar',
-    resumen: 'El Ministro ofrece balance tras el sismo: equipos de rescate activados, comunicaciones en proceso de restablecimiento, llamado a mantener la calma.',
-    url: 'https://mazo4f.com/ministro-cabello-ofrece-balance-tras-sismo-registrado-en-el-pais-tenemos-algunos-danos-y-estamos-atendiendolos',
-    nuevo: false
-  },
-  {
-    hora: '24/06/2026 · 9:18 PM',
-    titulo: '🙏 Ministro Cabello llama a la calma y pide mantenerse en espacios abiertos',
-    resumen: 'Ante el fuerte sismo registrado en el país, el Ministro hace un llamado a la calma y recomienda alejarse de edificaciones y permanecer en sitios abiertos.',
-    url: 'https://mazo4f.com/ministro-cabello-llama-a-la-calma-y-pide-mantenerse-en-sitios-abiertos-tras-fuerte-sismo-registrado-en-el-pais',
-    nuevo: false
-  },
-  {
-    hora: '24/06/2026 · 10:33 PM',
-    titulo: '🌍 Presidenta (E) Delcy Rodríguez agradece solidaridad internacional con Venezuela',
-    resumen: 'Varios países expresaron solidaridad y ofrecieron apoyo a Venezuela tras los sismos Mw 7.2 y 7.5 del 24 de junio de 2026.',
+    hora: '24/06/2026 · 10:08 PM',
+    titulo: '🌍 Solidaridad internacional: EEUU, Colombia, Cuba, Brasil, México, ONU y más ofrecen apoyo a Venezuela',
+    resumen: 'Países que contactaron a Venezuela: EE.UU., Panamá, Qatar, Cuba, Nicaragua, Turquía, Jordania, Barbados, Curazao, Colombia, Reino Unido, Brasil, México y organismos multilaterales. La Presidenta extendió condolencias a familias que perdieron seres queridos.',
     url: 'https://mazo4f.com/presidenta-e-delcy-rodriguez-agradecio-la-solidaridad-de-diferentes-paises-con-venezuela-sismo',
     nuevo: true
   },
   {
-    hora: '24/06/2026 · 9:10 PM',
-    titulo: '⚠️ Confirmados dos sismos Mw 7.2 y Mw 7.5 con más de 20 réplicas — Reporte FUNVISIS/Gobierno',
-    resumen: 'La Presidenta Encargada confirma oficialmente la secuencia de dos terremotos y más de 20 réplicas afectando 8 estados venezolanos.',
+    hora: '24/06/2026 · 10:04 PM',
+    titulo: '📱 VenApp habilitada para reportar desaparecidos y daños en viviendas por los sismos',
+    resumen: 'La plataforma VenApp está conectada con el Estado Mayor para reporte inmediato de personas desaparecidas y afectaciones a viviendas. Descárgala en tu celular.',
+    url: 'https://mazo4f.com/gobierno-nacional-pone-a-disposicion-plataforma-venapp-para-reportar-desaparecidos-y-danos-por-sismos-de-este-miercoles',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · 9:57 PM',
+    titulo: '🚨 Declarado el Estado Nacional de Emergencia en Venezuela por los sismos',
+    resumen: 'La Presidenta Encargada Delcy Rodríguez anuncia la activación del Estado Nacional de Emergencia en respuesta a los dos terremotos de magnitud 7.2 y 7.5 registrados.',
+    url: 'https://mazo4f.com/presidenta-e-delcy-rodriguez-anuncio-activacion-del-estado-nacional-de-emergencia',
+    nuevo: false
+  },
+  {
+    hora: '24/06/2026 · 9:57 PM',
+    titulo: '🏫 Suspensión de actividades escolares y labores no esenciales',
+    resumen: 'Se suspenden clases y actividades laborales no vinculadas a servicios esenciales en los estados afectados para facilitar labores de rescate y protección civil.',
+    url: 'https://mazo4f.com/presidenta-encargada-anuncia-suspension-de-actividades-escolares-y-labores-no-relacionadas-con-servicios-esenciales',
+    nuevo: false
+  },
+  {
+    hora: '24/06/2026 · 9:48 PM',
+    titulo: '✈️ Cerrado el Aeropuerto Internacional de Maiquetía por graves daños en su infraestructura',
+    resumen: 'La Presidenta Encargada anuncia el cierre del Aeropuerto Internacional de Maiquetía (Simón Bolívar) tras sufrir daños graves en su infraestructura producto de los sismos.',
+    url: 'https://mazo4f.com/presidenta-encargada-anuncia-cierre-del-aeropuerto-internacional-de-maiquetia-tras-graves-danos-a-su-infraestructura',
+    nuevo: false
+  },
+  {
+    hora: '24/06/2026 · 9:43 PM',
+    titulo: '⚠️ Confirmados dos sismos Mw 7.2 y Mw 7.5 con más de 20 réplicas — Reporte oficial',
+    resumen: 'La Presidenta Encargada confirma oficialmente la secuencia de dos terremotos de magnitud 7.2 y 7.5 con más de 20 réplicas afectando a múltiples estados venezolanos.',
     url: 'https://mazo4f.com/presidenta-e-rodriguez-informa-que-se-registraron-dos-sismos-de-magnitud-72-y-75-con-mas-de-20-replicas',
+    nuevo: false
+  },
+  {
+    hora: '24/06/2026 · 8:05 PM',
+    titulo: '🔥 Cierre temporal del servicio de gas en zonas afectadas para evitar incendios',
+    resumen: 'Como medida de seguridad post-sismo se suspende el servicio de gas en áreas con mayor afectación para prevenir incendios y explosiones. Ministro Cabello.',
+    url: 'https://mazo4f.com/ministro-cabello-anuncia-cierre-temporal-del-servicio-de-gas-para-garantizar-seguridad-tras-sismo-en-el-pais',
+    nuevo: false
+  },
+  {
+    hora: '24/06/2026 · 7:39 PM',
+    titulo: '🏚️ Cabello: Edificios y viviendas colapsados en Palos Grandes y Altamira — Equipos de rescate activados',
+    resumen: 'Balance preliminar: daños estructurales en municipio Chacao y estado La Guaira. "Se nos han venido unos edificios y viviendas en Palos Grandes, Altamira". Estados afectados: Trujillo, Carabobo, Yaracuy, Aragua, Miranda, La Guaira y Caracas.',
+    url: 'https://mazo4f.com/ministro-cabello-ofrece-balance-tras-sismo-registrado-en-el-pais-tenemos-algunos-danos-y-estamos-atendiendolos',
+    nuevo: false
+  },
+  {
+    hora: '24/06/2026 · 7:25 PM',
+    titulo: '🙏 Ministro Cabello llama a la calma y pide mantenerse en espacios abiertos',
+    resumen: 'Primer llamado oficial tras el sismo: "Manténganse en sitios abiertos, aléjense de edificaciones." Bomberos, Protección Civil y organismos de seguridad activados.',
+    url: 'https://mazo4f.com/ministro-cabello-llama-a-la-calma-y-pide-mantenerse-en-sitios-abiertos-tras-fuerte-sismo-registrado-en-el-pais',
     nuevo: false
   },
 ];
