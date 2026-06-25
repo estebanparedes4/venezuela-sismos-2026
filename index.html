@@ -1011,10 +1011,10 @@ const SEARCH_DB = [
   { ll:[10.075,-69.310],  n:'Ambulatorio Rafael V. Andrade (IVSS)',sub:'Barquisimeto, Lara',  icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
   // Aeropuerto
   { ll:[10.601,-66.991],  n:'Aeropuerto Simón Bolívar — Maiquetía', sub:'La Guaira · CLAUSURADO', icon:'✈️', cat:'INFRA', mmi:'VI', zoom:13 },
-  // DAÑOS CONFIRMADOS — Edificios colapsados
-  { ll:[10.4972,-66.8502], n:'🏚 Ed. PETUNIA — COLAPSO TOTAL · Los Palos Grandes',   sub:'1ª Transversal, Los Palos Grandes, Chacao, Miranda · 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:17 },
-  { ll:[10.4960,-66.8478], n:'🏚 Ed. SATURNO — COLAPSO TOTAL · Los Palos Grandes',   sub:'Calle Sorbona, Los Palos Grandes, Chacao, Miranda · 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:17 },
-  { ll:[10.507,-66.899],   n:'🏚 SAN BERNARDINO — 1 Edificio Colapsado', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
+  // DAÑOS CONFIRMADOS — pendientes de geolocalización verificada
+  // { ll:[10.4972,-66.8502], n:'Ed. PETUNIA — COLAPSO TOTAL', ... },
+  // { ll:[10.4960,-66.8478], n:'Ed. SATURNO — COLAPSO TOTAL', ... },
+  // { ll:[10.507,-66.899],   n:'SAN BERNARDINO — 1 Edificio Colapsado', ... },
 ];
 
 // ── MARCADORES DE DAÑOS CONFIRMADOS ──────────────────────────────────────────
@@ -1030,18 +1030,8 @@ const danosConfirmados = [
   { ll:[10.507,-66.899],   n:'San Bernardino — 1 Edificio Colapsado', dir:'Urb. San Bernardino, Caracas', detalles:'1 edificio de apartamentos colapsado. Posibles víctimas atrapadas. Equipos de rescate en sitio.', hora:'24-Jun-2026' },
 ];
 
-danosConfirmados.forEach(({ ll, n, dir, detalles, hora }) => {
-  L.marker(ll, { icon: mkDanoIcon(n), zIndexOffset: 2000 }).addTo(map)
-    .bindPopup(`
-      <div class="pop-title" style="color:#f43f5e">🏚 ${n}</div>
-      <div class="pop-body">
-        📍 ${dir}<br>
-        <b style="color:#f43f5e">⚠️ ${detalles}</b><br>
-        🕐 Reportado: ${hora}
-      </div>
-      <span class="pop-badge" style="background:#dc2626;color:#fff;font-weight:800;animation:pulse 1s ease-in-out infinite">🆘 DAÑO ESTRUCTURAL CONFIRMADO</span>
-    `, { maxWidth: 280 });
-});
+// danosConfirmados markers temporalmente ocultados — ubicaciones pendientes de verificación
+// danosConfirmados.forEach(({ ll, n, dir, detalles, hora }) => { ... });
 
 const CAT_COLORS = {
   'EPICENTRO': '#f43f5e', 'CIUDAD': '#38bdf8',
