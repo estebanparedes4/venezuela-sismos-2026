@@ -1010,6 +1010,215 @@ document.addEventListener('click', e => {
   if (!document.getElementById('search-wrap').contains(e.target))
     srResults.classList.remove('open');
 });
+
+// ── CAPA OSM: CENTROS DE SALUD (barrido completo Venezuela) ───────────────
+const osmCenters = [
+  {ll:[10.22854,-67.34074],n:'Sanidad (Padre Lazo)',emg:false},
+  {ll:[10.22662,-67.32676],n:'Maria de la Paz',emg:false},
+  {ll:[10.22449,-67.33774],n:'Nueva Victoria',emg:false},
+  {ll:[10.28396,-68.00962],n:'Hospital Oncológico Dr. Miguel Pérez Carreño',emg:false},
+  {ll:[10.42595,-67.01486],n:'Módulo de Las Adjuntas',emg:true},
+  {ll:[10.36528,-66.97637],n:'Dispensario La Rosaleda',emg:false},
+  {ll:[10.37363,-66.94862],n:'Caritas',emg:false},
+  {ll:[10.26805,-67.58785],n:'Maternidad La Floresta',emg:false},
+  {ll:[10.25091,-67.60128],n:'Cruz Roja (Valencia)',emg:false},
+  {ll:[10.15972,-68.88568],n:'Centro Ambulatorio IVSS (Chivacoa)',emg:false},
+  {ll:[10.45390,-68.05156],n:'Ambulatorio del S.S.O. La Elvira',emg:false},
+  {ll:[10.46429,-68.00719],n:'IVSS Hospital Dr. José Francisco Molina Sierra',emg:true},
+  {ll:[10.17752,-67.94298],n:'Módulo La Vivienda',emg:true},
+  {ll:[10.19018,-67.36727],n:'Módulo de El Castaño',emg:true},
+  {ll:[10.18357,-67.37701],n:'Medicatura Primitivo de Jesús',emg:false},
+  {ll:[10.34631,-68.73933],n:'Módulo La Ascensión',emg:true},
+  {ll:[10.16148,-68.89768],n:'Cruz Roja Yaracuy',emg:false},
+  {ll:[10.15978,-68.90272],n:'Hospital Tiburcio Garrido',emg:true},
+  {ll:[10.08332,-68.08105],n:'Módulo Libertador',emg:true},
+  {ll:[10.12647,-68.09442],n:'Ambulatorio La Guasima',emg:false},
+  {ll:[10.46694,-68.00871],n:'Cruz Roja Puerto Cabello',emg:false},
+  {ll:[10.27799,-67.66854],n:'Ambulatorio La Cabrera',emg:false},
+  {ll:[10.28543,-67.70011],n:'Hospital Simón Bolívar — Mariara',emg:false},
+  {ll:[10.20102,-67.58208],n:'Ambulatorio de Paraparal',emg:false},
+  {ll:[10.43577,-66.95879],n:'Módulo de La Hacienda',emg:true},
+  {ll:[10.48832,-66.91712],n:'Ambulatorio Monseñor de Castro',emg:false},
+  {ll:[10.51619,-66.94417],n:'Centro Clínico Quirúrgico Virgen Milagrosa',emg:true},
+  {ll:[10.49241,-66.85051],n:'Ambulatorio de Bello Campo',emg:false},
+  {ll:[10.50819,-67.60629],n:'Ambulatorio (Yaracuy Centro)',emg:false},
+  {ll:[10.21940,-67.59301],n:'Hospital Los Samanes',emg:true},
+  {ll:[10.47890,-66.81284],n:'Módulo de Petare',emg:true},
+  {ll:[9.66658,-68.56850],n:'Módulo de Canta Claro',emg:true},
+  {ll:[9.67298,-68.58846],n:'Hospital Central Dr. Egor Nucete — San Carlos',emg:true},
+  {ll:[10.60020,-67.03872],n:'Hospital Dr. Alfredo Machado — Catia La Mar',emg:true},
+  {ll:[10.48167,-66.85172],n:'Módulo Salvador Allende',emg:false},
+  {ll:[10.33866,-68.73956],n:'Centro Médico Metropolitano — San Felipe',emg:false},
+  {ll:[10.59680,-67.01374],n:'Módulo de Guaracarumbo',emg:true},
+  {ll:[10.58868,-67.05832],n:'Ambulatorio Jacinto Plaza',emg:false},
+  {ll:[10.49252,-66.83418],n:'Módulo de La Carlota',emg:false},
+  {ll:[10.16510,-68.29098],n:'Ambulatorio Rural Bejuma',emg:false},
+  {ll:[10.45833,-68.32027],n:'Medicatura Rural de Urama',emg:false},
+  {ll:[10.37368,-66.96807],n:'Módulo de Los Salias',emg:false},
+  {ll:[10.34972,-67.05017],n:'Centro Médico Docente El Paso',emg:false},
+  {ll:[9.91757,-67.29529],n:'Módulo El Guafal',emg:false},
+  {ll:[10.16402,-66.89197],n:'Hospital Dr. Osío',emg:false},
+  {ll:[10.58420,-67.07136],n:'Ambulatorio Pedro Cova',emg:false},
+  {ll:[9.65340,-68.57630],n:'Módulo Aeropuerto San Carlos',emg:true},
+  {ll:[9.66060,-68.59061],n:'Cruz Roja San Carlos',emg:false},
+  {ll:[10.28560,-67.62782],n:'Ambulatorio Los Grillitos',emg:false},
+  {ll:[10.15511,-68.39457],n:'Módulo Celia Sánchez — Bejuma',emg:false},
+  {ll:[10.17070,-68.26116],n:'Módulo Viviano Vargas',emg:false},
+  {ll:[10.08044,-67.78143],n:'Hospital de Güigüe',emg:false},
+  {ll:[10.34762,-67.04716],n:'Ambulatorio Los Teques',emg:false},
+  {ll:[10.05842,-69.33180],n:'Ambulatorio del Sur — Barquisimeto',emg:false},
+  {ll:[10.25344,-68.01791],n:'Dr. Luis Guada Lacau — Naguanagua',emg:false},
+  {ll:[10.23949,-68.01211],n:'CDI La Granja',emg:false},
+  {ll:[10.14815,-67.56032],n:'Módulo Palo Negro',emg:false},
+  {ll:[10.15404,-67.45991],n:'Seguro Social de Cagua',emg:false},
+  {ll:[10.17154,-67.45534],n:'Módulo La Fundación — Cagua',emg:false},
+  {ll:[10.18041,-67.44600],n:'Módulo Tamborito — Cagua',emg:false},
+  {ll:[10.34326,-66.95266],n:'Módulo El Hatillo',emg:false},
+  {ll:[10.08220,-69.29818],n:'Módulo Bararida — Barquisimeto',emg:false},
+  {ll:[9.92441,-68.29459],n:'IVSS Tinaco',emg:false},
+  {ll:[10.34315,-67.04303],n:'Sanidad Los Teques',emg:false},
+  {ll:[9.58132,-69.20088],n:'Módulo Acarigua',emg:false},
+  {ll:[9.54426,-69.18729],n:'Unidad Quirúrgica María Auxiliadora — Acarigua',emg:false},
+  {ll:[10.09016,-68.09544],n:'Ambulatorio Tocuyito',emg:false},
+  {ll:[10.34272,-67.04485],n:'Ambulatorio Dr. Francisco Risquez',emg:false},
+  {ll:[10.25552,-67.95370],n:'Ambulatorio San Diego',emg:false},
+  {ll:[10.18905,-67.93669],n:'Ambulatorio Los Guayos',emg:false},
+  {ll:[10.45100,-66.86225],n:'Ambulatorio Dr. José María Vargas — Petare',emg:false},
+  {ll:[10.20749,-67.87281],n:'Ambulatorio Mocundo',emg:false},
+  {ll:[10.20366,-67.87430],n:'Ambulatorio Barrio Adentro Mocundo',emg:false},
+  {ll:[10.28111,-67.67645],n:'Módulo La Cabrera II',emg:false},
+  {ll:[9.37159,-69.21523],n:'Módulo Ospino',emg:false},
+  {ll:[9.51538,-69.27025],n:'Ambulatorio Rural Río Acarigua',emg:false},
+  {ll:[9.09614,-69.04767],n:'Módulo Valle de La Pascua',emg:false},
+  {ll:[10.35174,-67.00064],n:'Ambulatorio Luis Martin Estaba — Carrizal',emg:false},
+  {ll:[9.01716,-69.48456],n:'Módulo Papelón',emg:false},
+  {ll:[9.30266,-69.45783],n:'Ambulatorio Dr. Daniel Camejo Acosta — Ospino',emg:false},
+  {ll:[9.90062,-67.34948],n:'Ambulatorio El Mahomo',emg:false},
+  {ll:[10.20028,-67.90001],n:'Ambulatorio Ciudad Alianza',emg:false},
+  {ll:[10.20115,-67.90050],n:'CDI Ciudad Alianza',emg:true},
+  {ll:[10.12656,-67.97474],n:'Consultorio Médico Apamates',emg:false},
+  {ll:[10.51596,-66.91158],n:'Distrito Sanitario N°1 — La Pastora',emg:false},
+  {ll:[10.49698,-66.92804],n:'Distrito Sanitario N°3 — San Martín',emg:false},
+  {ll:[10.45966,-66.91395],n:'Distrito Sanitario N°4 — El Valle',emg:false},
+  {ll:[10.49010,-66.80882],n:'Distrito Sanitario N°7 — La Urbina',emg:false},
+  {ll:[10.52957,-66.94654],n:'Ambulatorio Pedro González Rincones',emg:false},
+  {ll:[10.06420,-69.36531],n:'Área de Emergencia — Barquisimeto',emg:false},
+  {ll:[10.27221,-66.73279],n:'Consultorio El Manguito III',emg:true},
+  {ll:[10.26907,-66.70654],n:'CDI Cartanal',emg:false},
+  {ll:[10.79064,-68.33012],n:'Hospital Dr. Lino Arévalo — Tucacas',emg:false},
+  {ll:[10.48508,-66.73967],n:'CDI William Lara — Petare',emg:false},
+  {ll:[10.47962,-68.20429],n:'Módulo de Salud Banco Obrero — Morón',emg:false},
+  {ll:[10.06508,-69.35713],n:'Ambulatorio Obelisco — Barquisimeto',emg:false},
+  {ll:[10.59811,-66.97166],n:'CDI La Guaira',emg:false},
+  {ll:[10.59907,-66.98386],n:'Centro Oftalmológico de Vargas',emg:false},
+  {ll:[10.60491,-66.90089],n:'Ambulatorio Guaicamacuto',emg:false},
+  {ll:[10.62137,-66.73376],n:'SRI Naiguatá',emg:false},
+  {ll:[10.62161,-66.73848],n:'Hospital de Emergencias de Naiguatá',emg:true},
+  {ll:[10.30416,-67.03497],n:'Ambulatorio Dr. José Gregorio Hernández',emg:false},
+  {ll:[10.06546,-69.30336],n:'Dispensario Antituberculoso Dr. Luis Gómez López',emg:false},
+  {ll:[10.06390,-69.30223],n:'ASCARDIO — Barquisimeto',emg:false},
+  {ll:[10.52103,-66.91158],n:'Ambulatorio Domingo Luciani',emg:false},
+  {ll:[10.15953,-67.97867],n:'Ambulatorio La Isabelica — Valencia',emg:false},
+  {ll:[10.16723,-67.96791],n:'Policlínicas Elohim Valencia',emg:true},
+  {ll:[10.49638,-66.87283],n:'Centro de Salud La Florida — Caracas',emg:false},
+  // Zulia / Falcón
+  {ll:[10.58214,-71.64326],n:'Medisur — Maracaibo',emg:false},
+  {ll:[10.62624,-71.62646],n:'Ambulatorio Urbano II Corito II — Maracaibo',emg:false},
+  {ll:[10.62333,-71.62668],n:'Módulo Corito — Maracaibo',emg:false},
+  {ll:[10.64502,-71.66284],n:'Hospital Madre Rafols — Maracaibo',emg:false},
+  {ll:[10.61756,-71.64506],n:'Ambulatorio La Misión — Maracaibo',emg:false},
+  {ll:[10.61113,-71.63418],n:'Ambulatorio Los Pinos — Maracaibo',emg:false},
+  {ll:[10.72199,-71.69082],n:'Ambulatorio CAPI — Maracaibo',emg:false},
+  {ll:[10.69230,-71.69606],n:'Hospital Materno Infantil El Marite — Maracaibo',emg:false},
+  {ll:[10.70076,-71.67838],n:'Módulo Guaicaipuro — Maracaibo',emg:false},
+  {ll:[10.56277,-71.65850],n:'Ambulatorio El Silencio — Maracaibo',emg:false},
+  {ll:[10.55135,-71.65812],n:'CDI Urbanización La Modelo — Maracaibo',emg:false},
+  {ll:[10.55754,-71.63717],n:'Oncológico — Maracaibo',emg:false},
+  {ll:[9.96662,-71.12902],n:'Clínica PDVSA Bachaquero',emg:false},
+  {ll:[10.95523,-72.79230],n:'Hospital Nuestra Señora del Pilar — La Guajira',emg:false},
+  {ll:[11.34662,-71.96866],n:'Hospital II Binacional Paraguaipoa',emg:false},
+  {ll:[11.08570,-71.85554],n:'Hospital I de Sinamaica',emg:false},
+  {ll:[10.44477,-71.65105],n:'Ambulatorio Rural Palmarejo',emg:false},
+  {ll:[10.54696,-71.52377],n:'IVSS Ambulatorio Santa Rita — Cabimas',emg:false},
+  {ll:[10.54410,-71.51673],n:'Hospital Dr. Senen Castillo I Reverol — Cabimas',emg:false},
+  // Oriente: Anzoátegui / Sucre / Nueva Esparta / Monagas
+  {ll:[10.64621,-63.25511],n:'Hospital Santos Aníbal Dominicci — Carúpano',emg:false},
+  {ll:[9.46034,-64.82124],n:'Hospital Rafael Rangel — Guayana',emg:false},
+  {ll:[10.11514,-63.72735],n:'Hospital Pablo Villarroel — Cumaná',emg:false},
+  {ll:[10.93589,-64.05535],n:'Ambulatorio Tipo I María Marval — Margarita',emg:false},
+  {ll:[9.05791,-62.03900],n:'Materno Infantil Oswaldo Ismael Brito — Maturín',emg:false},
+  {ll:[9.05836,-62.04020],n:'Hospital Dr. Luis Razetti — Maturín',emg:true},
+  {ll:[10.44664,-63.78165],n:'Hospital de San Antonio — Nueva Esparta',emg:false},
+  {ll:[10.50073,-63.55305],n:'Hospital Dr. Diego Carbonell — Porlamar',emg:true},
+  {ll:[10.16977,-64.67334],n:'Ambulatorio Boyacá V — Barcelona',emg:false},
+  {ll:[10.15462,-64.67062],n:'Cruz Roja Venezolana — Barcelona',emg:false},
+  {ll:[10.16610,-64.66971],n:'Clínica Integral de la Mujer — Barcelona',emg:false},
+  {ll:[9.42812,-64.47849],n:'Centro Médico Anaco',emg:false},
+  {ll:[9.08376,-64.31604],n:'Materno Infantil de Kashama',emg:false},
+  {ll:[10.09017,-64.67168],n:'Dispensario Los Mesones — Píritu',emg:false},
+  {ll:[10.23769,-64.59840],n:'Ambulatorio Guanta',emg:false},
+  {ll:[10.11572,-64.57177],n:'CDI Barceloneta — Anzoátegui',emg:false},
+  {ll:[10.99065,-63.82021],n:'Maternidad El Ángel — Margarita',emg:false},
+  {ll:[10.96895,-64.18125],n:'Centro Médico Integral Boca del Río — Margarita',emg:false},
+  {ll:[11.00449,-64.37926],n:'Ambulatorio Boca de Pozo — Margarita',emg:false},
+  {ll:[10.67980,-63.81574],n:'Ambulatorio Urbano Chacopata — Sucre',emg:false},
+  {ll:[10.90011,-64.09674],n:'Ambulatorio Punta de Piedras — Margarita',emg:false},
+  {ll:[10.25216,-64.45349],n:'Ambulatorio Tipo I Playa Colorada',emg:false},
+];
+
+// Crear layer group OSM (activado por defecto pero togglable)
+const osmLayer = L.layerGroup();
+osmCenters.forEach(({ ll, n, emg }) => {
+  const col  = emg ? '#f0abfc' : '#22d3ee';    // magenta-claro = emergencia, cian = regular
+  const r    = emg ? 7 : 5;
+  const tip  = emg ? '🚨 HOSPITAL / EMERGENCIAS' : '🏥 CENTRO DE SALUD';
+  L.circleMarker(ll, {
+    radius: r,
+    fillColor: col,
+    color: '#fff',
+    weight: 1.5,
+    fillOpacity: 0.88,
+    interactive: true,
+  }).bindPopup(
+    `<div class="pop-title" style="color:${col}">${emg ? '🚨' : '🏥'} ${n}</div>` +
+    `<div class="pop-body">📍 ${ll[0].toFixed(4)}, ${ll[1].toFixed(4)}<br>` +
+    `<small style="color:#94a3b8">Fuente: OpenStreetMap / Overpass API</small></div>` +
+    `<span class="pop-badge" style="background:${col}33;color:${col};border:1px solid ${col}66">${tip}</span>`,
+    { maxWidth: 260 }
+  ).addTo(osmLayer);
+});
+osmLayer.addTo(map);
+
+// ── CONTROL DE CAPAS ────────────────────────────────────────────────────────
+const overlays = {
+  '🏥 Hospitales estratégicos': L.layerGroup(),   // placeholder — ya están en mapa
+  '🗺 Centros de salud OSM (151)': osmLayer,
+};
+// Control de capas simplificado (solo capa OSM togglable)
+const layerCtrl = L.control({ position: 'bottomright' });
+layerCtrl.onAdd = function() {
+  const div = L.DomUtil.create('div', '');
+  div.style.cssText = 'background:#1e293b;border:1.5px solid #334155;border-radius:8px;padding:10px 14px;font-size:12px;color:#f1f5f9;box-shadow:0 4px 16px rgba(0,0,0,.6);cursor:default;min-width:210px;';
+  div.innerHTML = `
+    <div style="font-weight:800;color:#38bdf8;margin-bottom:8px;letter-spacing:.5px">CAPAS DEL MAPA</div>
+    <label style="display:flex;align-items:center;gap:6px;margin-bottom:4px;cursor:pointer">
+      <input type="checkbox" id="toggle-osm" checked style="accent-color:#22d3ee">
+      <span style="color:#22d3ee">⬤</span> Centros de salud OSM <span style="color:#64748b">(${osmCenters.length})</span>
+    </label>
+    <div style="color:#64748b;font-size:10px;margin-top:6px">
+      🟦 Regular &nbsp;&nbsp; 🟣 Con emergencias<br>
+      <span style="color:#475569">Fuente: OpenStreetMap · Jun 2026</span>
+    </div>`;
+  L.DomEvent.disableClickPropagation(div);
+  return div;
+};
+layerCtrl.addTo(map);
+document.addEventListener('change', e => {
+  if (e.target.id === 'toggle-osm') {
+    if (e.target.checked) osmLayer.addTo(map);
+    else map.removeLayer(osmLayer);
+  }
+});
 </script>
 </body>
 </html>
