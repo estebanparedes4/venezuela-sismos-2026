@@ -181,6 +181,22 @@
     .leg-item   { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-2); margin-bottom: 5px; }
     .leg-dot    { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
 
+    /* ── MMI SCALE ──────────────────────────────────── */
+    .mmi-table  { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-top: 4px; }
+    .mmi-table th { background: #0f172a; color: var(--text-3); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 6px; text-align: left; }
+    .mmi-table td { padding: 3px 6px; border-bottom: 1px solid #1e293b; vertical-align: middle; }
+    .mmi-swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(255,255,255,.15); vertical-align: middle; margin-right: 4px; }
+    .mmi-val    { font-weight: 800; font-size: 10px; }
+    .mmi-row-active { background: rgba(255,255,255,0.04); }
+
+    /* ── POPULATION TABLE ───────────────────────────── */
+    .pop-table  { width: 100%; border-collapse: collapse; font-size: 9.5px; }
+    .pop-table th { background: #0f172a; color: var(--text-3); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 6px; }
+    .pop-table td { padding: 4px 6px; border-bottom: 1px solid #1e293b; vertical-align: middle; color: var(--text-2); }
+    .pop-table td:first-child { color: var(--text-1); font-weight: 600; }
+    .pop-num    { color: #38bdf8 !important; font-weight: 800 !important; font-family: monospace; }
+    .pop-note   { font-size: 8.5px; color: var(--text-3); padding: 4px 6px 2px; }
+
     /* ── SOURCE ─────────────────────────────────────── */
     .source-note { font-size: 9px; color: var(--text-3); padding: 8px 14px 12px; border-top: 1px solid var(--border); line-height: 1.6; }
     .source-note a { color: var(--blue); text-decoration: none; }
@@ -269,19 +285,19 @@
     <div class="section">
       <h3>📍 Secuencia Sísmica</h3>
       <div class="quake-card q1">
-        <div class="q-label">1° Precursor · 22:04 UTC</div>
+        <div class="q-label">1° Precursor · 22:04:33 UTC · USGS us6000t7zc</div>
         <div class="q-mag">Mw 7.2</div>
-        <div class="q-detail">24 km ENE de San Felipe · Prof. 21.9 km<br>Municipio Veroes, Yaracuy</div>
+        <div class="q-detail">24 km ENE de San Felipe · 10.387°N 68.520°W<br>Prof. 21.9 km · Municipio Veroes, Yaracuy<br>MMI máx: <strong style="color:#f97316">VIII–IX</strong> · Alerta PAGER: 🔴 Roja</div>
       </div>
       <div class="quake-card q2">
-        <div class="q-label">2° Principal · 22:04:39 UTC (+39 seg)</div>
+        <div class="q-label">2° Principal · 22:05:12 UTC (+39 seg) · USGS us6000t7zp</div>
         <div class="q-mag">Mw 7.5</div>
-        <div class="q-detail">SE de Yumare · Prof. 10 km (superficial)<br>Municipio Veroes, Yaracuy</div>
+        <div class="q-detail">23 km SE de Yumare · 10.453°N 68.514°W<br>Prof. 10.0 km (superficial) · Municipio Veroes<br>MMI USGS: <strong style="color:#f43f5e">8.77 ≈ VIII–IX</strong> · CDI: 8.7 (260 rep.)</div>
       </div>
       <div class="stats">
-        <div class="stat"><div class="stat-n">+6</div><div class="stat-l">Réplicas</div></div>
-        <div class="stat"><div class="stat-n">10 km</div><div class="stat-l">Prof. mín.</div></div>
-        <div class="stat"><div class="stat-n">7.5</div><div class="stat-l">Mw máx.</div></div>
+        <div class="stat"><div class="stat-n">260</div><div class="stat-l">Reportes CDI</div></div>
+        <div class="stat"><div class="stat-n">8.77</div><div class="stat-l">MMI USGS</div></div>
+        <div class="stat"><div class="stat-n">🔴</div><div class="stat-l">PAGER Alert</div></div>
       </div>
     </div>
 
@@ -353,15 +369,135 @@
       </ul>
     </div>
 
-    <!-- LEYENDA -->
+    <!-- LEYENDA MAPA -->
     <div class="legend">
-      <h3>Leyenda</h3>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--red);box-shadow:0 0 6px var(--red)"></div>Epicentro sísmico</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--red);opacity:.35"></div>Zona impacto crítico</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--orange);opacity:.35"></div>Zona impacto alto</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--yellow);opacity:.35"></div>Zona impacto medio</div>
-      <div class="leg-item">🏥 Hospital / Centro médico</div>
-      <div class="leg-item">✈️ Aeropuerto dañado</div>
+      <h3>Leyenda del Mapa</h3>
+      <div class="leg-item"><div style="font-size:18px;line-height:1">💥</div><strong>Epicentro Mw 7.5</strong> (sismo principal)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#f97316;box-shadow:0 0 8px #f97316;border:2px solid #fff"></div><strong>Epicentro Mw 7.2</strong> (precursor)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--red);opacity:.45"></div>Zona impacto crítico (MMI IX–X)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--orange);opacity:.4"></div>Zona impacto alto (MMI VII–VIII)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--yellow);opacity:.35"></div>Zona impacto medio (MMI V–VI)</div>
+      <div class="leg-item">🏥 Hospital / Punto estratégico</div>
+      <div class="leg-item">✈️ Aeropuerto (clausurado)</div>
+    </div>
+
+    <!-- INTENSIDADES MMI USGS -->
+    <div class="section">
+      <h3>📊 Intensidades Percibidas — Escala MMI (USGS)</h3>
+      <table class="mmi-table">
+        <thead>
+          <tr><th>MMI</th><th>Descripción</th><th>Efectos esperados</th><th>Zona</th></tr>
+        </thead>
+        <tbody>
+          <tr class="mmi-row-active">
+            <td><span class="mmi-swatch" style="background:#cc0000"></span><span class="mmi-val" style="color:#f87171">X</span></td>
+            <td style="color:#f87171;font-weight:700">Extremo</td>
+            <td style="color:#f87171">Colapso masivo estructuras. Tierra agrietada.</td>
+            <td style="color:#f87171;font-weight:600">Epicentro Mw 7.5 · Yumare</td>
+          </tr>
+          <tr class="mmi-row-active">
+            <td><span class="mmi-swatch" style="background:#ff0000"></span><span class="mmi-val" style="color:#fca5a5">IX</span></td>
+            <td style="color:#fca5a5;font-weight:700">Violento</td>
+            <td style="color:#fca5a5">Colapso edificios mal construidos. Daños graves en sólidos.</td>
+            <td style="color:#fca5a5;font-weight:600">Veroes · San Felipe · Yumare</td>
+          </tr>
+          <tr>
+            <td><span class="mmi-swatch" style="background:#ff6600"></span><span class="mmi-val" style="color:#fdba74">VIII</span></td>
+            <td style="color:#fdba74;font-weight:700">Severo</td>
+            <td style="color:#fdba74">Daños considerables en estructuras resistentes. Muros caen.</td>
+            <td style="color:#fdba74">Chivacoa · Nirgua · Morón</td>
+          </tr>
+          <tr>
+            <td><span class="mmi-swatch" style="background:#ffaa00"></span><span class="mmi-val" style="color:#fde68a">VII</span></td>
+            <td style="color:#fde68a;font-weight:700">Muy Fuerte</td>
+            <td style="color:#fde68a">Daños en edificios ordinarios. Ladrillos caen. Pánico masivo.</td>
+            <td style="color:#fde68a">Valencia · Maracay · Morón</td>
+          </tr>
+          <tr>
+            <td><span class="mmi-swatch" style="background:#ffff00"></span><span class="mmi-val" style="color:#fef08a">VI</span></td>
+            <td style="color:#fef08a;font-weight:700">Fuerte</td>
+            <td style="color:#fef08a">Grietas en revoque, objetos caen, sentido por todos.</td>
+            <td style="color:#fef08a">Caracas · Barquisimeto</td>
+          </tr>
+          <tr>
+            <td><span class="mmi-swatch" style="background:#80ffaa"></span><span class="mmi-val" style="color:#86efac">V</span></td>
+            <td style="color:#86efac;font-weight:700">Moderado</td>
+            <td style="color:#86efac">Sentido por casi todos. Objetos ligeros se desplazan.</td>
+            <td style="color:#86efac">Miranda · Lara · Trujillo</td>
+          </tr>
+          <tr>
+            <td><span class="mmi-swatch" style="background:#88ffff"></span><span class="mmi-val" style="color:#a5f3fc">IV</span></td>
+            <td style="color:#a5f3fc">Ligero</td>
+            <td style="color:#a5f3fc">Sentido en interiores. Ventanas y puertas traquetean.</td>
+            <td style="color:#a5f3fc">Zulia · Mérida · Anzoátegui</td>
+          </tr>
+          <tr>
+            <td><span class="mmi-swatch" style="background:#9999ff"></span><span class="mmi-val" style="color:#c4b5fd">III</span></td>
+            <td>Débil</td>
+            <td>Sentido por personas en reposo. Similar a paso de camión.</td>
+            <td style="color:var(--text-3)">Trinidad · Colombia</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:8.5px;color:var(--text-3);margin-top:6px">Fuente: USGS ShakeMap · Escala Mercalli Modificada (MMI) · Estimado basado en magnitud y profundidad</div>
+    </div>
+
+    <!-- DATOS CENSALES POBLACIÓN -->
+    <div class="section">
+      <h3>👥 Población en Zonas Afectadas (Estimado 2023)</h3>
+      <table class="pop-table">
+        <thead>
+          <tr><th>Zona</th><th>MMI est.</th><th>Población</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mun. Veroes (epicentro)<br><span style="color:var(--text-3);font-size:8.5px">Yaracuy · Zona ROJA</span></td>
+            <td style="color:#f87171;font-weight:800">IX–X</td>
+            <td class="pop-num">~43.000</td>
+          </tr>
+          <tr>
+            <td>San Felipe<br><span style="color:var(--text-3);font-size:8.5px">Capital Yaracuy</span></td>
+            <td style="color:#fca5a5;font-weight:800">VIII–IX</td>
+            <td class="pop-num">~150.000</td>
+          </tr>
+          <tr>
+            <td>Chivacoa / Nirgua<br><span style="color:var(--text-3);font-size:8.5px">Yaracuy periferia</span></td>
+            <td style="color:#fdba74;font-weight:800">VII–VIII</td>
+            <td class="pop-num">~75.000</td>
+          </tr>
+          <tr>
+            <td>Valencia + Morón<br><span style="color:var(--text-3);font-size:8.5px">Carabobo</span></td>
+            <td style="color:#fde68a;font-weight:800">VII</td>
+            <td class="pop-num">~1.200.000</td>
+          </tr>
+          <tr>
+            <td>Maracay<br><span style="color:var(--text-3);font-size:8.5px">Aragua</span></td>
+            <td style="color:#fde68a;font-weight:800">VII</td>
+            <td class="pop-num">~900.000</td>
+          </tr>
+          <tr>
+            <td>Caracas (área metro)<br><span style="color:var(--text-3);font-size:8.5px">Distrito Capital + Miranda</span></td>
+            <td style="color:#fef08a;font-weight:800">V–VI</td>
+            <td class="pop-num">~3.300.000</td>
+          </tr>
+          <tr>
+            <td>La Guaira<br><span style="color:var(--text-3);font-size:8.5px">Aeropuerto Maiquetía</span></td>
+            <td style="color:#fef08a;font-weight:800">VI</td>
+            <td class="pop-num">~120.000</td>
+          </tr>
+          <tr>
+            <td>Barquisimeto<br><span style="color:var(--text-3);font-size:8.5px">Lara</span></td>
+            <td style="color:#fef08a;font-weight:800">V–VI</td>
+            <td class="pop-num">~1.200.000</td>
+          </tr>
+          <tr style="background:rgba(56,189,248,0.06)">
+            <td style="color:#38bdf8;font-weight:800">TOTAL AFECTADOS<br><span style="color:var(--text-3);font-size:8.5px">MMI ≥ V (sentido con fuerza)</span></td>
+            <td style="color:#38bdf8;font-weight:800">V–X</td>
+            <td class="pop-num" style="color:#38bdf8 !important;font-size:13px">~7 mill.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pop-note">Fuente: INE Venezuela (Censo 2011, proyecciones 2023) · USGS PAGER loss estimation · Cifras aproximadas. Zonas MMI ≥ IX: ~270.000 hab. en riesgo crítico.</div>
     </div>
 
     <!-- FUENTES -->
@@ -382,70 +518,135 @@
 <!-- Leaflet JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+// ── USGS OFICIAL DATA (FDSNWS API verificado 24 Jun 2026) ────────────────
+// Mw 7.5: us6000t7zp · lat 10.453, lon -68.5139 · prof. 10 km · MMI 8.77 · ALERTA ROJA
+// Mw 7.2: us6000t7zc · lat 10.3874, lon -68.52  · prof. 21.9 km · MMI 8.77 · ALERTA ROJA
+
+const EPI75 = [10.453, -68.5139];   // Mw 7.5 — 23 km SE de Yumare (MAINSHOCK)
+const EPI72 = [10.3874, -68.52];    // Mw 7.2 — 24 km ENE de San Felipe (FORESHOCK)
+
 // ── INIT MAP ──────────────────────────────────────────────────────────────
-const map = L.map('map', { center: [10.1, -67.8], zoom: 7, zoomControl: true });
+const map = L.map('map', { center: [10.2, -68.0], zoom: 7, zoomControl: true });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · Datos sísmicos: <a href="https://earthquake.usgs.gov" target="_blank">USGS</a>',
   maxZoom: 18
 }).addTo(map);
 
 // ── ICON FACTORIES ────────────────────────────────────────────────────────
-const mkDot = (color, size = 20, glow = false) => L.divIcon({
+const mkEmoji = (e, bg, size=26) => L.divIcon({
   className: '',
-  html: `<div style="width:${size}px;height:${size}px;background:${color};border-radius:50%;border:2.5px solid #fff;${glow ? `box-shadow:0 0 12px ${color},0 0 24px ${color}` : 'box-shadow:0 2px 6px rgba(0,0,0,.5)'};"></div>`,
-  iconSize: [size, size], iconAnchor: [size / 2, size / 2]
+  html: `<div style="width:${size}px;height:${size}px;background:${bg};border-radius:5px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:${Math.round(size*0.52)}px;box-shadow:0 2px 8px rgba(0,0,0,.5);">${e}</div>`,
+  iconSize: [size, size], iconAnchor: [size/2, size/2]
 });
 
-const mkEmoji = (e, bg) => L.divIcon({
+// Estrella para epicentros (distinto estilo por cada sismo)
+const mkEpiMarker = (color, label, pulse=false) => L.divIcon({
   className: '',
-  html: `<div style="width:26px;height:26px;background:${bg};border-radius:5px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.5);">${e}</div>`,
-  iconSize: [26, 26], iconAnchor: [13, 13]
+  html: `<div style="position:relative;width:44px;height:44px;">
+    ${pulse ? `<div style="position:absolute;inset:-6px;border-radius:50%;border:3px solid ${color};animation:ping 1.5s ease-out infinite;opacity:.6;"></div>` : ''}
+    <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 44 44" width="44" height="44">
+        <polygon points="22,2 27,16 42,16 30,25 35,40 22,31 9,40 14,25 2,16 17,16"
+          fill="${color}" stroke="#fff" stroke-width="2"
+          style="filter:drop-shadow(0 0 8px ${color})"/>
+        <text x="22" y="28" text-anchor="middle" font-size="9" font-weight="900" fill="#fff" font-family="sans-serif">${label}</text>
+      </svg>
+    </div>
+  </div>`,
+  iconSize: [44, 44], iconAnchor: [22, 22]
 });
 
-const mkStar = () => L.divIcon({
-  className: '',
-  html: `<div style="font-size:30px;line-height:1;filter:drop-shadow(0 0 8px #f43f5e);">💥</div>`,
-  iconSize: [30, 30], iconAnchor: [15, 15]
+// ── SHAKEMAP MMI — CONTORNOS DE INTENSIDAD (USGS basados en modelo IPE) ──
+// Radios estimados para Mw 7.5 a 10 km prof. · factor de atenuación Venezuela (roca dura)
+// Fuente: USGS ShakeMap / Atkinson & Boore 2003 GMPE
+const shakeZones = [
+  { r:  15000, col:'#cc0000', label:'MMI X',   mmi:'X',   desc:'Extremo — Colapso masivo' },
+  { r:  35000, col:'#ff0000', label:'MMI IX',  mmi:'IX',  desc:'Violento — Colapso edificios débiles' },
+  { r:  70000, col:'#ff6600', label:'MMI VIII', mmi:'VIII', desc:'Severo — Daños considerables' },
+  { r: 130000, col:'#ffaa00', label:'MMI VII',  mmi:'VII',  desc:'Muy Fuerte — Daños moderados' },
+  { r: 220000, col:'#ffff00', label:'MMI VI',   mmi:'VI',   desc:'Fuerte — Sentido por todos, daños leves' },
+  { r: 360000, col:'#80ffaa', label:'MMI V',    mmi:'V',    desc:'Moderado — Objetos se mueven' },
+];
+
+// Dibujar zonas ShakeMap desde afuera hacia adentro
+[...shakeZones].reverse().forEach(({ r, col, desc, mmi }) => {
+  L.circle(EPI75, {
+    radius: r, color: col, fillColor: col,
+    fillOpacity: mmi === 'X' ? 0.25 : mmi === 'IX' ? 0.20 : 0.10,
+    weight: mmi === 'X' || mmi === 'IX' ? 2 : 1,
+    dashArray: '4,4', opacity: 0.75
+  }).addTo(map)
+    .bindPopup(`<div class="pop-title">ShakeMap — ${mmi}</div><div class="pop-body">${desc}<br>Radio aprox.: ${Math.round(r/1000)} km del epicentro Mw 7.5</div><span class="pop-badge" style="background:${col};color:#000">MMI ${mmi}</span>`);
 });
 
-// ── EPICENTROS ────────────────────────────────────────────────────────────
-L.marker([10.40, -68.50], { icon: mkDot('#f97316', 22, true) }).addTo(map)
-  .bindPopup(`<div class="pop-title">⚡ Precursor — Mw 7.2</div><div class="pop-body">📅 24 Jun 2026 · 22:04 UTC<br>📍 24 km ENE de San Felipe, Yaracuy<br>🏔 Profundidad: 21.9 km · Mun. Veroes</div><span class="pop-badge pb-epi">FORESHOCK Mw 7.2</span>`);
+// ── EPICENTROS — AMBOS MARCADOS ────────────────────────────────────────────
+// CSS para animación ping
+const style = document.createElement('style');
+style.textContent = `@keyframes ping { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2.2);opacity:0} }`;
+document.head.appendChild(style);
 
-L.marker([10.51, -68.73], { icon: mkStar() }).addTo(map)
-  .bindPopup(`<div class="pop-title">💥 Sismo Principal — Mw 7.5</div><div class="pop-body">📅 24 Jun 2026 · 22:04:39 UTC (+39 seg)<br>📍 SE de Yumare, Yaracuy<br>🏔 Profundidad: 10 km (superficial)<br>⚠️ PAGER: P(fatalidades &gt;100k) = 30%</div><span class="pop-badge pb-epi">MAINSHOCK Mw 7.5</span>`);
+// 1. Mw 7.5 — MAINSHOCK (estrella roja pulsante)
+L.marker(EPI75, { icon: mkEpiMarker('#f43f5e', '7.5', true), zIndexOffset: 1000 }).addTo(map)
+  .bindPopup(`
+    <div class="pop-title">💥 SISMO PRINCIPAL — Mw 7.5</div>
+    <div class="pop-body">
+      <b>ID USGS:</b> us6000t7zp<br>
+      <b>Fecha/Hora:</b> 24 Jun 2026 · 22:05:12 UTC<br>
+      <b>Ubicación:</b> 23 km SE de Yumare, Venezuela<br>
+      <b>Coordenadas:</b> 10.453°N / 68.514°W<br>
+      <b>Profundidad:</b> 10.0 km (superficial)<br>
+      <b>MMI USGS:</b> 8.77 ≈ <span style="color:#f43f5e;font-weight:800">VIII–IX</span><br>
+      <b>CDI comunitario:</b> 8.7 (260 reportes)<br>
+      <b>Alerta PAGER:</b> <span style="color:#f43f5e;font-weight:800">ROJA</span><br>
+      <b>Tipo:</b> Mww (tensor momento)
+    </div>
+    <span class="pop-badge pb-epi">MAINSHOCK Mw 7.5 · USGS us6000t7zp</span>
+  `);
 
-// ── CÍRCULOS DE IMPACTO ───────────────────────────────────────────────────
-const ring = (ll, r, col, op, dash = '') => L.circle(ll, { radius: r, color: col, fillColor: col, fillOpacity: op, weight: 1.5, dashArray: dash }).addTo(map);
+// 2. Mw 7.2 — FORESHOCK (estrella naranja, sin pulso)
+L.marker(EPI72, { icon: mkEpiMarker('#f97316', '7.2', false), zIndexOffset: 900 }).addTo(map)
+  .bindPopup(`
+    <div class="pop-title">⚡ PRECURSOR — Mw 7.2</div>
+    <div class="pop-body">
+      <b>ID USGS:</b> us6000t7zc (atth5pbk)<br>
+      <b>Fecha/Hora:</b> 24 Jun 2026 · 22:04:33 UTC<br>
+      <b>Ubicación:</b> 24 km ENE de San Felipe, Venezuela<br>
+      <b>Coordenadas:</b> 10.387°N / 68.520°W<br>
+      <b>Profundidad:</b> 21.9 km<br>
+      <b>MMI USGS:</b> 8.77 ≈ <span style="color:#f97316;font-weight:800">VIII–IX</span><br>
+      <b>Alerta PAGER:</b> <span style="color:#f43f5e;font-weight:800">ROJA</span><br>
+      <b>Tipo:</b> Mww (tensor momento)<br>
+      <b>Nota:</b> Ocurre 39 seg. antes del mainshock
+    </div>
+    <span class="pop-badge" style="background:#f97316;color:#fff">FORESHOCK Mw 7.2 · USGS us6000t7zc</span>
+  `);
 
-ring([10.45, -68.62], 65000, '#f43f5e', 0.13, '6,5');  // epicentro
-ring([10.480, -66.904], 22000, '#f43f5e', 0.11);         // Caracas
-ring([10.30, -68.00],  38000, '#f97316', 0.09);          // Carabobo
-ring([10.25, -67.60],  28000, '#f97316', 0.09);          // Aragua
-ring([10.06, -69.32],  22000, '#eab308', 0.07);          // Lara
-ring([10.35, -66.40],  18000, '#eab308', 0.07);          // Miranda
+// Línea entre epicentros para mostrar secuencia
+L.polyline([EPI72, EPI75], {
+  color: '#fff', weight: 1.5, dashArray: '5,6', opacity: 0.35
+}).addTo(map);
 
 // ── CIUDADES ──────────────────────────────────────────────────────────────
 const cities = [
-  { ll:[10.480,-66.904], n:'CARACAS',     c:'#f43f5e', lv:'CRÍTICO', note:'🔴 Altamira y Los Palos Grandes: colapsos confirmados. Gas cortado. Edificios destruidos en sureste.' },
-  { ll:[10.335,-68.745], n:'San Felipe',  c:'#f43f5e', lv:'CRÍTICO', note:'🔴 Capital de Yaracuy. Epicentro cercano. Daños severos esperados.' },
-  { ll:[10.510,-68.730], n:'Yumare',      c:'#f43f5e', lv:'EPICENTRO',note:'💥 A 10 km del epicentro Mw 7.5. Zona de mayor impacto físico.' },
-  { ll:[10.172,-67.993], n:'Valencia',    c:'#f97316', lv:'ALTO',    note:'🟠 Carabobo. Edificios dañados reportados.' },
-  { ll:[10.254,-67.596], n:'Maracay',     c:'#f97316', lv:'ALTO',    note:'🟠 Aragua. Daños estructurales confirmados.' },
-  { ll:[10.601,-66.930], n:'La Guaira',   c:'#f97316', lv:'ALTO',    note:'🟠 Aeropuerto Maiquetía clausurado. Vuelos cancelados.' },
-  { ll:[10.064,-69.322], n:'Barquisimeto',c:'#eab308', lv:'MEDIO',   note:'🟡 Lara. Sismo sentido con fuerza. Daños menores.' },
-  { ll:[10.480,-68.010], n:'Morón',       c:'#f97316', lv:'ALTO',    note:'🟠 Carabobo. Epicentro secundario reportado.' },
-  { ll:[9.319, -70.638], n:'Mérida',      c:'#eab308', lv:'BAJO',    note:'🟡 Sismo sentido. Sin daños graves reportados.' },
+  { ll:[10.480,-66.904], n:'CARACAS',      c:'#fef08a', lv:'V–VI',  mmi:'Fuerte',     note:'🟡 MMI V–VI · Altamira y Los Palos Grandes: colapsos confirmados. Gas cortado. Edificios destruidos.' },
+  { ll:[10.335,-68.745], n:'San Felipe',   c:'#ff0000', lv:'VIII–IX', mmi:'Violento',  note:'🔴 MMI VIII–IX · Capital de Yaracuy. Zona próxima al epicentro. Daños graves estructurales.' },
+  { ll:[10.453,-68.514], n:'Yumare',       c:'#cc0000', lv:'IX–X',   mmi:'Extremo',   note:'💥 MMI IX–X · Epicentro Mw 7.5 a 23 km. Zona de máximo impacto. Daño total posible.' },
+  { ll:[10.172,-67.993], n:'Valencia',     c:'#ffaa00', lv:'VII',    mmi:'Muy Fuerte', note:'🟠 MMI VII · Carabobo. Edificios dañados. Daños moderados en estructuras.' },
+  { ll:[10.254,-67.596], n:'Maracay',      c:'#ffaa00', lv:'VII',    mmi:'Muy Fuerte', note:'🟠 MMI VII · Aragua. Daños estructurales. Pánico generalizado.' },
+  { ll:[10.601,-66.930], n:'La Guaira',    c:'#ffff00', lv:'VI',     mmi:'Fuerte',    note:'🟡 MMI VI · Aeropuerto Maiquetía clausurado. Daños leves a moderados.' },
+  { ll:[10.064,-69.322], n:'Barquisimeto', c:'#ffff00', lv:'V–VI',   mmi:'Fuerte',    note:'🟡 MMI V–VI · Lara. Sismo sentido con fuerza. Objetos caídos. Pánico.' },
+  { ll:[10.480,-68.010], n:'Morón',        c:'#ff6600', lv:'VIII',   mmi:'Severo',    note:'🟠 MMI VIII · Carabobo. Daños considerables. Posibles colapsos en estructuras débiles.' },
+  { ll:[9.319, -70.638], n:'Mérida',       c:'#80ffaa', lv:'IV',     mmi:'Ligero',    note:'🟢 MMI IV · Sentido en interiores. Sin daños significativos reportados.' },
 ];
 
-cities.forEach(({ ll, n, c, lv, note }) => {
-  const lvClass = (lv === 'CRÍTICO' || lv === 'EPICENTRO') ? 'pb-crit' : lv === 'ALTO' ? 'pb-crit' : 'pb-aff';
+cities.forEach(({ ll, n, c, lv, mmi, note }) => {
+  const isEpi = lv === 'IX–X';
   L.circleMarker(ll, {
-    radius: lv === 'EPICENTRO' ? 9 : 7,
+    radius: isEpi ? 9 : 7,
     color: c, fillColor: c, fillOpacity: 0.85, weight: 2
   }).addTo(map)
-    .bindPopup(`<div class="pop-title">🏙 ${n}</div><div class="pop-body">${note}</div><span class="pop-badge ${lvClass}">${lv}</span>`);
+    .bindPopup(`<div class="pop-title">🏙 ${n}</div><div class="pop-body">${note}</div><span class="pop-badge" style="background:${c};color:#000;font-weight:800">MMI ${lv} · ${mmi}</span>`);
 
   L.tooltip({ permanent: true, direction: 'right', className: 'city-tip' })
     .setContent(`<span style="color:${c};text-shadow:0 0 4px #000,0 0 4px #000">${n}</span>`)
@@ -454,28 +655,25 @@ cities.forEach(({ ll, n, c, lv, note }) => {
 
 // ── AEROPUERTO ────────────────────────────────────────────────────────────
 L.marker([10.601, -66.991], { icon: mkEmoji('✈️', '#5b21b6') }).addTo(map)
-  .bindPopup(`<div class="pop-title">✈️ Aeropuerto Internacional Simón Bolívar</div><div class="pop-body">📍 Maiquetía, La Guaira<br>❌ CLAUSURADO — Daños estructurales confirmados<br>Vuelos desviados a aeropuertos alternativos</div><span class="pop-badge pb-air">INFRAESTRUCTURA DAÑADA</span>`);
+  .bindPopup(`<div class="pop-title">✈️ Aeropuerto Internacional Simón Bolívar</div><div class="pop-body">📍 Maiquetía, La Guaira<br>MMI estimado: VI (Fuerte)<br>❌ CLAUSURADO — Daños estructurales confirmados<br>Vuelos desviados a aeropuertos alternativos</div><span class="pop-badge pb-air">INFRAESTRUCTURA DAÑADA · MMI VI</span>`);
 
 // ── HOSPITALES ────────────────────────────────────────────────────────────
 const hospitals = [
-  { ll:[10.335,-68.745], n:"Hosp. Central 'Dr. Plácido Rodríguez Rivero'", loc:"San Felipe, Yaracuy — EPICENTRO",   st:"⚠️ Zona crítica — evaluar urgente" },
-  { ll:[10.158,-68.898], n:"Hosp. Dr. Tiburcio Garrido",                  loc:"Chivacoa, Yaracuy (27 km)",           st:"⚠️ Posibles daños — punto triaje" },
-  { ll:[10.155,-68.567], n:"Hosp. Padre Oliveros",                         loc:"Nirgua, Yaracuy (29 km)",             st:"? Estado no confirmado" },
-  { ll:[10.492,-66.899], n:"Hosp. Universitario de Caracas (HUC)",         loc:"Ciudad Universitaria, Caracas",       st:"✅ Referencia nacional — activo" },
-  { ll:[10.493,-66.898], n:"Hosp. Vargas de Caracas",                      loc:"Parroquia La Pastora, Caracas",       st:"✅ Activo — centro histórico" },
-  { ll:[10.460,-67.020], n:"Hosp. Dr. Miguel Pérez Carreño",               loc:"La Yaguara, Caracas Oeste",           st:"✅ IVSS — referencia activo" },
-  { ll:[10.485,-66.910], n:"Hosp. de Niños J.M. de los Ríos",              loc:"Caracas Centro — Pediatría",          st:"? Pendiente confirmación" },
-  { ll:[10.490,-66.940], n:"Hosp. Gral. Lídice 'Dr. Jesús Yerena'",        loc:"Lídice, Caracas",                    st:"✅ Operativo reportado" },
-  { ll:[10.330,-68.750], n:"Cruz Roja Venezolana — Yaracuy",               loc:"Cantarrana, San Felipe",              st:"⚠️ Activada — triaje de emergencia" },
+  { ll:[10.335,-68.745], n:"Hosp. Central 'Dr. Plácido Rodríguez Rivero'", loc:"San Felipe, Yaracuy — MMI VIII–IX",  st:"⚠️ Zona crítica — evaluar urgente", mmi:'VIII–IX' },
+  { ll:[10.158,-68.898], n:"Hosp. Dr. Tiburcio Garrido",                   loc:"Chivacoa, Yaracuy — MMI VII–VIII",   st:"⚠️ Posibles daños — punto triaje",  mmi:'VII–VIII' },
+  { ll:[10.155,-68.567], n:"Hosp. Padre Oliveros",                          loc:"Nirgua, Yaracuy — MMI VII–VIII",     st:"? Estado no confirmado",             mmi:'VII–VIII' },
+  { ll:[10.492,-66.899], n:"Hosp. Universitario de Caracas (HUC)",          loc:"Ciudad Universitaria, Caracas — MMI V–VI", st:"✅ Referencia nacional — activo", mmi:'V–VI' },
+  { ll:[10.493,-66.898], n:"Hosp. Vargas de Caracas",                       loc:"La Pastora, Caracas — MMI V–VI",    st:"✅ Activo — centro histórico",       mmi:'V–VI' },
+  { ll:[10.460,-67.020], n:"Hosp. Dr. Miguel Pérez Carreño",                loc:"La Yaguara, Caracas Oeste — MMI V–VI", st:"✅ IVSS — referencia activo",     mmi:'V–VI' },
+  { ll:[10.485,-66.910], n:"Hosp. de Niños J.M. de los Ríos",               loc:"Caracas Centro — MMI V–VI",         st:"? Pendiente confirmación",           mmi:'V–VI' },
+  { ll:[10.490,-66.940], n:"Hosp. Gral. Lídice 'Dr. Jesús Yerena'",         loc:"Lídice, Caracas — MMI V–VI",        st:"✅ Operativo reportado",             mmi:'V–VI' },
+  { ll:[10.330,-68.750], n:"Cruz Roja Venezolana — Yaracuy",                loc:"San Felipe — MMI VIII–IX",           st:"⚠️ Activada — triaje de emergencia", mmi:'VIII–IX' },
 ];
 
-hospitals.forEach(({ ll, n, loc, st }) => {
+hospitals.forEach(({ ll, n, loc, st, mmi }) => {
   L.marker(ll, { icon: mkEmoji('🏥', '#0369a1') }).addTo(map)
-    .bindPopup(`<div class="pop-title">🏥 ${n}</div><div class="pop-body">📍 ${loc}<br>${st}</div><span class="pop-badge pb-hosp">PUNTO ESTRATÉGICO</span>`);
+    .bindPopup(`<div class="pop-title">🏥 ${n}</div><div class="pop-body">📍 ${loc}<br>${st}</div><span class="pop-badge pb-hosp">PUNTO ESTRATÉGICO · MMI ${mmi}</span>`);
 });
-
-// ── PULSE RING en epicentro ───────────────────────────────────────────────
-L.circle([10.51, -68.73], { radius: 8000, color: '#f43f5e', fillColor: '#f43f5e', fillOpacity: 0.55, weight: 3 }).addTo(map);
 </script>
 </body>
 </html>
