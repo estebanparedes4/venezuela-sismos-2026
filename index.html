@@ -424,7 +424,7 @@
 
 <div id="alert">
   🚨 <strong>EMERGENCIA ACTIVA:</strong>&nbsp;
-  Rescates en curso · LA GUAIRA: ZONA MÁS AFECTADA · Aeropuerto Maiquetía clausurado · ⛪ Cruz Iglesia San Juan derrumbada · 🏥 Hospitales Caracas en emergencia máxima · 🏬 C.C. La Cascada con daños estructurales · Ed. Petunia y Saturno colapsados (Los Palos Grandes) · Movistar sin internet · +20 réplicas · USGS PAGER: probabilidad alta de víctimas masivas
+  🔴 32 FALLECIDOS · 700+ HERIDOS (balance oficial 00:48 hs · sin contar La Guaira) · Rescates en curso · 🔴 LA GUAIRA: ZONA CERO — CATIA LA MAR DEVASTADA · Aeropuerto Maiquetía clausurado · ⛪ Cruz Iglesia San Juan derrumbada · 🏥 Hospitales Caracas en emergencia máxima · 🏚 14 edificios colapsados confirmados · Movistar sin internet · Digitel gratis 48h · +20 réplicas · USGS PAGER: probabilidad alta de víctimas masivas
 </div>
 
 <!-- ── NEWS TICKER BAR ─────────────────────────────── -->
@@ -472,14 +472,15 @@
     <div class="section">
       <h3>🗺 Zonas más Afectadas</h3>
       <ul class="zone-list">
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">La Guaira — ZONA CERO · Catia La Mar</span><span class="level-tag lv-c">CRÍTICO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Yaracuy (Veroes / San Felipe)</span><span class="level-tag lv-c">CRÍTICO</span></li>
-        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Altamira</span><span class="level-tag lv-c">CRÍTICO</span></li>
-        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Los Palos Grandes</span><span class="level-tag lv-c">CRÍTICO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — San Bernardino / El Paraíso</span><span class="level-tag lv-c">CRÍTICO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Los Palos Grandes / Altamira</span><span class="level-tag lv-c">CRÍTICO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Carabobo (Morón / Valencia)</span><span class="level-tag lv-h">ALTO</span></li>
-        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">La Guaira — ZONA MÁS AFECTADA</span><span class="level-tag lv-c">CRÍTICO</span></li>
-        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Aragua (Maracay)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Aragua (Maracay / Choroní)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Falcón (Tucacas)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Miranda (Los Teques)</span><span class="level-tag lv-h">ALTO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Lara (Barquisimeto)</span><span class="level-tag lv-m">MEDIO</span></li>
-        <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Miranda</span><span class="level-tag lv-m">MEDIO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Trujillo</span><span class="level-tag lv-m">MEDIO</span></li>
       </ul>
     </div>
@@ -718,14 +719,130 @@
       </div>
     </div>
 
+    <!-- TELÉFONOS DE EMERGENCIA -->
+    <div class="section">
+      <h3>📞 Teléfonos de Emergencia</h3>
+      <div style="font-size:9.5px;color:var(--text-3);margin-bottom:8px">Venezuela · Actualizados 24-25 Jun 2026</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+        <div style="background:#dc262618;border:1px solid #dc2626;border-radius:6px;padding:8px;text-align:center">
+          <div style="font-size:22px;font-weight:900;color:#f87171">911</div>
+          <div style="font-size:9px;color:#fca5a5">EMERGENCIAS NACIONALES</div>
+        </div>
+        <div style="background:#ea580c18;border:1px solid #ea580c;border-radius:6px;padding:8px;text-align:center">
+          <div style="font-size:22px;font-weight:900;color:#fb923c">166</div>
+          <div style="font-size:9px;color:#fdba74">PROTECCIÓN CIVIL</div>
+        </div>
+        <div style="background:#1d4ed818;border:1px solid #1d4ed8;border-radius:6px;padding:8px;text-align:center">
+          <div style="font-size:22px;font-weight:900;color:#60a5fa">167</div>
+          <div style="font-size:9px;color:#93c5fd">BOMBEROS</div>
+        </div>
+        <div style="background:#15803d18;border:1px solid #15803d;border-radius:6px;padding:8px;text-align:center">
+          <div style="font-size:22px;font-weight:900;color:#4ade80">112</div>
+          <div style="font-size:9px;color:#86efac">DIGITEL · Emergencias</div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:var(--text-2);margin-bottom:6px;border-top:1px solid var(--border);padding-top:8px">
+        <b style="color:#fb923c">Desde teléfono fijo CANTV:</b> 171<br>
+        <b style="color:#fb923c">Desde Movilnet:</b> *1<br>
+        <b style="color:#fb923c">Desde Movistar:</b> 911
+      </div>
+      <details style="font-size:10px;color:var(--text-2)">
+        <summary style="cursor:pointer;color:#38bdf8;font-weight:700;margin-bottom:6px">🏥 Hospitales Caracas — Teléfonos</summary>
+        <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">
+          <div>• H. Andrés Herrera Vegas (El Algodonal): <b>(212) 472.31.38</b></div>
+          <div>• H. Centro Médico IVSS (Caricuao): <b>(212) 432.55.11</b></div>
+          <div>• H. Clínico Universitario (Chaguaramos): <b>(212) 606.71.11</b></div>
+          <div>• H. de Clínicas Caracas (San Bernardino): <b>(212) 508.61.11</b></div>
+          <div>• H. de Niños J.M. de Los Ríos: <b>(212) 574.35.11</b></div>
+          <div>• H. Dr. Domingo Luciani (El Llanito): <b>(212) 257.87.12</b></div>
+          <div>• H. El Algodonal (Antímano): <b>(212) 472.54.10</b></div>
+          <div>• H. José Gregorio Hdez. (Los Magallanes): <b>(212) 870.78.97</b></div>
+          <div>• H. Miguel Pérez Carreño (Bella Vista): <b>(212) 472.84.72</b></div>
+          <div>• H. Militar San Martín: <b>(212) 406.12.41</b></div>
+          <div>• H. de Clínicas Caracas: <b>(212) 508.61.11</b></div>
+          <div>• Clínica La Floresta (Los Palos Grandes): <b>(212) 285.60.58</b></div>
+          <div>• Centro Médico de Caracas (San Bernardino): <b>(212) 555.91.11</b></div>
+        </div>
+      </details>
+      <details style="font-size:10px;color:var(--text-2);margin-top:6px">
+        <summary style="cursor:pointer;color:#38bdf8;font-weight:700;margin-bottom:6px">🚑 Ambulancias & Rescate</summary>
+        <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">
+          <div>• Aeroambulancias: <b>(0212) 993.25.41 / 992.89.80</b></div>
+          <div>• Rescarven: <b>(0212) 993.69.11 / 993.13.10</b></div>
+          <div>• Ambulancia Metropolitana: <b>(0212) 545.45.45</b></div>
+          <div>• Bomberos Chacao: <b>(0212) 265.32.61</b></div>
+          <div>• Bomberos La Guaira: <b>(0212) 332.76.20</b></div>
+          <div>• Bomberos El Paraíso: <b>(0212) 481.09.61</b></div>
+          <div>• Prot. Civil (0800): <b>0800-5588427</b></div>
+          <div>• Brigada Rescate El Ávila: <b>(0212) 615.63.68</b></div>
+          <div>• 🚗 <b>YUMMY:</b> viajes GRATIS a hospitales en Caracas</div>
+          <div>• 📱 <b>DIGITEL:</b> llamadas y SMS gratis 48h</div>
+        </div>
+      </details>
+    </div>
+
+    <!-- PLATAFORMAS DE AYUDA Y RECURSOS -->
+    <div class="section">
+      <h3>🔗 Plataformas de Ayuda</h3>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <a href="https://desaparecidosterremotovenezuela.com/" target="_blank"
+           style="display:flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 10px;text-decoration:none;color:var(--text-1);transition:background .2s"
+           onmouseover="this.style.background='#263348'" onmouseout="this.style.background='#1e293b'">
+          <span style="font-size:18px">🔍</span>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#38bdf8">Personas Desaparecidas</div>
+            <div style="font-size:9px;color:#64748b">desaparecidosterremotovenezuela.com</div>
+          </div>
+        </a>
+        <a href="https://venezuelatebusca.com" target="_blank"
+           style="display:flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 10px;text-decoration:none;color:var(--text-1);transition:background .2s"
+           onmouseover="this.style.background='#263348'" onmouseout="this.style.background='#1e293b'">
+          <span style="font-size:18px">❤️</span>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#38bdf8">Venezuela Te Busca</div>
+            <div style="font-size:9px;color:#64748b">venezuelatebusca.com</div>
+          </div>
+        </a>
+        <a href="https://terremotovenezuela.com/" target="_blank"
+           style="display:flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 10px;text-decoration:none;color:var(--text-1);transition:background .2s"
+           onmouseover="this.style.background='#263348'" onmouseout="this.style.background='#1e293b'">
+          <span style="font-size:18px">🗺</span>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#f97316">Mapa Edificios Colapsados</div>
+            <div style="font-size:9px;color:#64748b">terremotovenezuela.com</div>
+          </div>
+        </a>
+        <a href="https://terremotovenezuela.app" target="_blank"
+           style="display:flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 10px;text-decoration:none;color:var(--text-1);transition:background .2s"
+           onmouseover="this.style.background='#263348'" onmouseout="this.style.background='#1e293b'">
+          <span style="font-size:18px">📱</span>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#f97316">Reporte Ciudadano en Vivo</div>
+            <div style="font-size:9px;color:#64748b">terremotovenezuela.app — coordina rescates</div>
+          </div>
+        </a>
+        <a href="https://kf.kobotoolbox.org/#/forms/a8XWDsdUcpBzXGtgQmiiro/data/map" target="_blank"
+           style="display:flex;align-items:center;gap:8px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 10px;text-decoration:none;color:var(--text-1);transition:background .2s"
+           onmouseover="this.style.background='#263348'" onmouseout="this.style.background='#1e293b'">
+          <span style="font-size:18px">📊</span>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#a78bfa">Reporte Daños — KoboToolbox</div>
+            <div style="font-size:9px;color:#64748b">Mapa oficial de daños estructurales</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <!-- FUENTES -->
     <div class="source-note">
       <strong>Fuentes:</strong> <a href="https://earthquake.usgs.gov/earthquakes/eventpage/atth5pbk/region-info" target="_blank">USGS</a> ·
       <a href="http://www.funvisis.gob.ve/" target="_blank">FUNVISIS</a> ·
       <a href="https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix" target="_blank">CNN ES</a> ·
+      <a href="https://www.nytimes.com/live/2026/06/24/world/venezuela-earthquake" target="_blank">NYT Live</a> ·
+      <a href="https://www.reuters.com/world/americas/venezuelas-rodriguez-declares-state-emergency-after-earthquake-does-not-give-2026-06-25/" target="_blank">Reuters</a> ·
       <a href="https://www.infobae.com/venezuela/2026/06/24/un-terremoto-de-magnitud-71-sacudio-varias-regiones-de-venezuela-hay-alerta-de-tsunami-para-aruba-curazao-y-bonaire/" target="_blank">Infobae</a> ·
       <a href="https://en.wikipedia.org/wiki/2026_Venezuela_earthquakes" target="_blank">Wikipedia</a><br>
-      Actualizado: 24 Jun 2026 · Operaciones activas
+      Actualizado: 25 Jun 2026 · Operaciones activas · 32 fallecidos · 700+ heridos
     </div>
   </aside>
 </div>
@@ -1025,13 +1142,83 @@ const mkDanoIcon = (n) => L.divIcon({
 });
 
 const danosConfirmados = [
-  { ll:[10.4972,-66.8502], n:'Edificio PETUNIA — COLAPSO TOTAL',    dir:'1ª Transversal de Los Palos Grandes, Urb. Los Palos Grandes, Municipio Chacao, Estado Miranda',     detalles:'Colapso total confirmado. Labores de rescate en curso. Posibles víctimas atrapadas bajo escombros. Zona este de Caracas.', hora:'24-Jun-2026' },
-  { ll:[10.4960,-66.8478], n:'Edificio SATURNO — COLAPSO TOTAL',    dir:'Calle Sorbona, Los Palos Grandes, Municipio Chacao, Estado Miranda',     detalles:'Colapso total confirmado. Bomberos y Protección Civil desplegados. Búsqueda y rescate activa.', hora:'24-Jun-2026' },
-  { ll:[10.507,-66.899],   n:'San Bernardino — 1 Edificio Colapsado', dir:'Urb. San Bernardino, Caracas', detalles:'1 edificio de apartamentos colapsado. Posibles víctimas atrapadas. Equipos de rescate en sitio.', hora:'24-Jun-2026' },
+  // ── CARACAS — CHACAO / LOS PALOS GRANDES ──
+  { ll:[10.4972,-66.8502], n:'Edificio PETUNIA — COLAPSO TOTAL ✅ 18 RESCATADOS',
+    dir:'1ª Transversal de Los Palos Grandes, Urb. Los Palos Grandes, Mpio. Chacao, Miranda',
+    detalles:'Colapso total confirmado. Alcalde de Chacao Gustavo Duque confirmó 18 personas rescatadas con vida. +150 rescatistas desplegados en la zona con agua, baños, comida y equipos médicos.', hora:'24-Jun-2026' },
+  { ll:[10.4960,-66.8478], n:'Edificio SATURNO — COLAPSO TOTAL',
+    dir:'Calle Sorbona, Los Palos Grandes, Mpio. Chacao, Miranda',
+    detalles:'Colapso total confirmado. Bomberos y Protección Civil desplegados. Búsqueda y rescate activa.', hora:'24-Jun-2026' },
+
+  // ── CARACAS — SAN BERNARDINO ──
+  { ll:[10.5065,-66.8992], n:'Edificio RITA — COLAPSO TOTAL (6-7 pisos)',
+    dir:'Urb. San Bernardino, Mpio. El Libertador, Caracas',
+    detalles:'Edificio de 6 a 7 pisos colapsado totalmente. Municipio El Libertador. Equipos de rescate en sitio.', hora:'24-Jun-2026' },
+  { ll:[10.5083,-66.9001], n:'Edificio MOISÉS — COLAPSO PARCIAL (1 torre)',
+    dir:'Av. Anauco, San Bernardino, Caracas',
+    detalles:'Una de las 2 torres del edificio Moisés se desplomó. Bomberos y Protección Civil avanzan en remoción de escombros tras escuchar señales de vida de un ciudadano atrapado en la estructura. (11:04 PM)', hora:'24-Jun-2026' },
+
+  // ── CARACAS — EL PARAÍSO ──
+  { ll:[10.4973,-66.9179], n:'Edificio STJ — El Paraíso (12 ATRAPADOS)',
+    dir:'El Paraíso, Caracas',
+    detalles:'Labores de búsqueda y rescate intensificadas con canino especializado (vienen 4 más). 12 personas bajo escombros confirmadas por Protección Civil. 2 sobrevivientes ya rescatados. (10:01 PM)', hora:'24-Jun-2026' },
+
+  // ── CARACAS — PINTO SALINAS ──
+  { ll:[10.4910,-66.9175], n:'Bloques 5 — PINTO SALINAS (4 MUERTOS)',
+    dir:'Pinto Salinas, Caracas',
+    detalles:'5 pisos desplomados. 4 personas sin vida confirmadas por vecinos que ayudaron a rescatar los cuerpos. Identificadas: Doralolina Cerezo (54 años) y Luisa Sarabia de Cerezo (72 años).', hora:'24-Jun-2026' },
+
+  // ── BARUTA ──
+  { ll:[10.4315,-66.8396], n:'Las Minas de Baruta — 3 FALLECIDOS',
+    dir:'Las Minas de Baruta, Municipio Baruta',
+    detalles:'Equipos de rescate culminaron labores. Balance: 3 personas fallecidas y sobrevivientes rescatados. Alcalde Darwin González informó despliegue inmediato de cuerpos de seguridad.', hora:'24-Jun-2026' },
+
+  // ── LA GUAIRA ──
+  { ll:[10.6012,-66.9304], n:'Hotel EDUARD\'S — DERRUMBE TOTAL (MUERTOS)',
+    dir:'La Guaira, Estado La Guaira',
+    detalles:'Hotel Eduard\'s de La Guaira se derrumbó por completo. Varios muertos confirmados entre los que se encontraban familiares de beisbolistas. Zona más afectada del país.', hora:'24-Jun-2026' },
+  { ll:[10.6103,-66.9542], n:'Edificios PUNTA BRISAS, PUNTA BRAVA y LAS PALMAS — COLAPSO',
+    dir:'Las 15 letras, Macuto, La Guaira',
+    detalles:'Colapso total confirmado de 3 edificios en Macuto. Video de testigo @jagallipoli muestra derrumbe masivo. Alta afectación en Las 15 letras y sector Macuto.', hora:'24-Jun-2026' },
+  { ll:[10.6171,-66.9779], n:'Edificios OASIS BEACH y BUCANEROS — COLAPSO',
+    dir:'Playa Grande, La Guaira',
+    detalles:'Colapso confirmado de los edificios Oasis Beach y Bucaneros en Playa Grande. Zona costera de La Guaira gravemente afectada.', hora:'24-Jun-2026' },
+  { ll:[10.5938,-66.9149], n:'Residencias MANSIÓN CLUB CARABALLEDA — Daños severos',
+    dir:'Caraballeda, La Guaira',
+    detalles:'Severos daños estructurales reportados. Zona costera de Caraballeda afectada.', hora:'24-Jun-2026' },
+  { ll:[10.5382,-66.9124], n:'Edificios ESCUELA NAVAL — COLAPSO (Meseta de Mamo)',
+    dir:'Meseta de Mamo, La Guaira',
+    detalles:'Colapso de edificios de la Escuela Naval confirmado. (Reporte 10:01 PM)', hora:'24-Jun-2026' },
+
+  // ── FALCÓN — TUCACAS ──
+  { ll:[10.8075,-68.3086], n:'La MAR SUITE (Tucacas) — COLAPSO EDIFICIO',
+    dir:'Complejo Hotelero La Mar Suite, Tucacas, Estado Falcón',
+    detalles:'Colapso total de uno de los módulos de apartamentos de varios niveles. Edificación reducida a escombros. Estacionamiento sepultado con vehículos. Graves secuelas en zona turística del estado Falcón.', hora:'24-Jun-2026' },
+
+  // ── MIRANDA — LOS TEQUES ──
+  { ll:[10.3440,-67.0383], n:'C.C. LA CASCADA Los Teques — COLAPSO TOTAL',
+    dir:'Los Teques, Estado Miranda',
+    detalles:'Centro Comercial La Cascada de Los Teques colapsó totalmente. Hospital Victorino Santaella Ruíz adyacente desalojado preventivamente por daños.', hora:'24-Jun-2026' },
+
+  // ── CARABOBO ──
+  { ll:[10.4886,-68.2149], n:'Almacén PEQUIVEN — COLAPSO TOTAL (Químicos)',
+    dir:'Morón, Estado Carabobo',
+    detalles:'Colapso total de la estructura del almacén de materiales químicos y laboratorio de Pequiven en Carabobo. Riesgo de materiales peligrosos.', hora:'24-Jun-2026' },
 ];
 
-// danosConfirmados markers temporalmente ocultados — ubicaciones pendientes de verificación
-// danosConfirmados.forEach(({ ll, n, dir, detalles, hora }) => { ... });
+// ── Mostrar marcadores de daños confirmados ──────────────────────────────────
+danosConfirmados.forEach(({ ll, n, dir, detalles, hora }) => {
+  L.marker(ll, { icon: mkDanoIcon(n), zIndexOffset: 2000 }).addTo(map)
+    .bindPopup(`
+      <div class="pop-title" style="color:#f87171">🏚 ${n}</div>
+      <div class="pop-body">
+        <b>📍 Dirección:</b> ${dir}<br>
+        <b>🕐 Hora reporte:</b> ${hora}<br><br>
+        ${detalles}
+      </div>
+      <span class="pop-badge" style="background:#dc262622;color:#f87171;border:1px solid #dc2626">⚠️ DAÑO CONFIRMADO</span>
+    `, { maxWidth: 320 });
+});
 
 const CAT_COLORS = {
   'EPICENTRO': '#f43f5e', 'CIUDAD': '#38bdf8',
@@ -1469,6 +1656,90 @@ layerCtrl.onAdd = function(m) {
 
 // ── NOTICIAS DE CONTINGENCIA ────────────────────────────────────────────────
 const NOTICIAS = [
+  {
+    hora: '25/06/2026 · 00:48 hs',
+    titulo: '🔴 BALANCE OFICIAL: 32 FALLECIDOS y 700+ HERIDOS — sin contabilizar La Guaira',
+    resumen: 'Conteo oficial al 00:48 (hora Chile). 32 personas fallecidas y 700 heridos confirmados en el país. La cifra no incluye aún el estado La Guaira, la zona más devastada, donde los rescates continúan. Se esperan cifras mayores. Fuentes: NYT, Reuters, CNN.',
+    url: 'https://www.reuters.com/world/americas/venezuelas-rodriguez-declares-state-emergency-after-earthquake-does-not-give-2026-06-25/',
+    nuevo: true
+  },
+  {
+    hora: '25/06/2026 · AHORA',
+    titulo: '⛑️ 18 RESCATADOS CON VIDA del Edificio Petunia (Los Palos Grandes)',
+    resumen: 'El Alcalde de Chacao, Gustavo Duque, anunció que han logrado rescatar 18 personas con vida del derrumbe del Edificio Petunia en Los Palos Grandes. Más de 150 rescatistas desplegados. En la plaza de Palos Grandes y Altamira se ofrecen agua, baños, comida y equipos médicos.',
+    url: 'https://edition.cnn.com/2026/06/24/weather/live-news/venezuela-earthquake-puerto-rico-tsunami',
+    nuevo: true
+  },
+  {
+    hora: '25/06/2026 · AHORA',
+    titulo: '🛟 Rescatistas internacionales llegan el 25/06: RD, El Salvador, Ecuador, México, Qatar',
+    resumen: 'La Presidenta Encargada Delcy Rodríguez informó que en la mañana del jueves 25 de junio llegarán rescatistas de República Dominicana, El Salvador, Ecuador, México y Qatar. El Salvador ya confirmó 300 rescatistas + paramédicos y 50 toneladas de equipo e insumos listos para partir.',
+    url: 'https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix',
+    nuevo: true
+  },
+  {
+    hora: '25/06/2026 · 11:04 PM',
+    titulo: '🔍 Señales de vida en Edificio Moisés (San Bernardino) — búsqueda activa',
+    resumen: 'Continúan las labores de búsqueda en el Edificio Moisés (Av. Anauco). Bomberos y Protección Civil avanzan en remoción de escombros tras escuchar señales de vida de un ciudadano atrapado dentro de la estructura. Una de las 2 torres del edificio se desplomó.',
+    url: 'https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix',
+    nuevo: true
+  },
+  {
+    hora: '25/06/2026 · 10:01 PM',
+    titulo: '🐕 Canino especializado en Edificio STJ (El Paraíso): 12 atrapados, 2 rescatados',
+    resumen: 'Las labores de búsqueda en el Edificio STJ de El Paraíso se intensificaron con la llegada de un canino especializado (4 más en camino). Protección Civil confirma 12 personas bajo los escombros. 2 sobrevivientes ya rescatados con vida.',
+    url: 'https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '🏚 Edificios Punta Brisas, Punta Brava y Las Palmas colapsaron en Macuto (Las 15 letras)',
+    resumen: 'Se cayeron los edificios Punta Brisas, Punta Brava y Las Palmas en Las 15 letras, sector Macuto, estado La Guaira. Video de testigo @jagallipoli muestra el derrumbe masivo. Alta afectación en toda la zona costera.',
+    url: 'https://www.nytimes.com/live/2026/06/24/world/venezuela-earthquake',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '🏨 Hotel EDUARD\'S (La Guaira) derrumbado por completo — varios muertos',
+    resumen: 'El reconocido Hotel Eduard\'s de La Guaira se derrumbó completamente. Varios muertos confirmados. Entre las víctimas habría familiares de beisbolistas. La Guaira es la zona con mayor devastación del país. Catia La Mar podría ser la Zona Cero.',
+    url: 'https://www.reuters.com/world/americas/venezuelas-rodriguez-declares-state-emergency-after-earthquake-does-not-give-2026-06-25/',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '💀 Pinto Salinas (Caracas): 4 muertos confirmados — Bloque 5 de 5 pisos colapsado',
+    resumen: 'Cuatro personas sin vida tras el derrumbe del Bloque 5 en Pinto Salinas, Caracas. Los cuerpos fueron rescatados por vecinos. Identificadas: Doralolina Cerezo (54 años) y Luisa Sarabia de Cerezo (72 años). El edificio perdió 5 pisos de altura.',
+    url: 'https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '💀 Las Minas de Baruta: 3 fallecidos — rescate completado',
+    resumen: 'Equipos de rescate culminaron labores en estructuras colapsadas de Las Minas de Baruta. Balance: 3 personas fallecidas. El alcalde Darwin González confirmó el rescate efectivo del resto de los ciudadanos que se encontraban atrapados.',
+    url: 'https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '📞 Digitel ofrece llamadas y mensajería GRATIS 48h · Yummy: viajes gratis a hospitales',
+    resumen: 'Digitel anunció que las llamadas nacionales y el servicio de mensajería serán gratuitos durante las próximas 48 horas. La empresa de movilidad Yummy ofrece viajes gratuitos a hospitales y clínicas en Caracas.',
+    url: 'https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '⛰️ Vía a Galipán desapareció · Choroní incomunicado · Vía a Morón con grietas',
+    resumen: 'Parte de la vía a Galipán en el Ávila desapareció por los sismos. Choroní (Aragua) sin energía eléctrica e incomunicado con Maracay por derrumbe en la vía. Carretera Redoma de Morón (Carabobo) con impresionantes grietas.',
+    url: 'https://www.nytimes.com/live/2026/06/24/world/venezuela-earthquake',
+    nuevo: true
+  },
+  {
+    hora: '24/06/2026 · AHORA',
+    titulo: '🏚 Escuela Naval (Mamo) colapsada · Pequiven (Carabobo) destruido · La Mar Suite (Tucacas)',
+    resumen: 'Edificios de la Escuela Naval en la Meseta de Mamo (La Guaira) colapsaron. Almacén y laboratorio de Pequiven en Carabobo: colapso total (riesgo químico). C.C. La Cascada de Los Teques (Miranda): colapso total. La Mar Suite (Tucacas, Falcón): un módulo colapsado.',
+    url: 'https://www.nytimes.com/live/2026/06/24/world/venezuela-earthquake',
+    nuevo: true
+  },
   {
     hora: '24/06/2026 · AHORA',
     titulo: '⛪ Cruz de la histórica Iglesia de San Juan derrumbada en Caracas tras el sismo',
