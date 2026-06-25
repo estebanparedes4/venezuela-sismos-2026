@@ -424,7 +424,7 @@
 
 <div id="alert">
   🚨 <strong>EMERGENCIA ACTIVA:</strong>&nbsp;
-  Rescates en curso · Aeropuerto Maiquetía clausurado · +6 réplicas · USGS PAGER: probabilidad alta de víctimas masivas
+  Rescates en curso · LA GUAIRA: ZONA MÁS AFECTADA · Aeropuerto Maiquetía clausurado · Ed. Petunia y Saturno colapsados (Los Palos Grandes) · Movistar sin internet · +20 réplicas · USGS PAGER: probabilidad alta de víctimas masivas
 </div>
 
 <!-- ── NEWS TICKER BAR ─────────────────────────────── -->
@@ -476,7 +476,7 @@
         <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Altamira</span><span class="level-tag lv-c">CRÍTICO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Los Palos Grandes</span><span class="level-tag lv-c">CRÍTICO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Carabobo (Morón / Valencia)</span><span class="level-tag lv-h">ALTO</span></li>
-        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">La Guaira (Aeropuerto)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">La Guaira — ZONA MÁS AFECTADA</span><span class="level-tag lv-c">CRÍTICO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Aragua (Maracay)</span><span class="level-tag lv-h">ALTO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Lara (Barquisimeto)</span><span class="level-tag lv-m">MEDIO</span></li>
         <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Miranda</span><span class="level-tag lv-m">MEDIO</span></li>
@@ -688,7 +688,7 @@
             <td class="pop-num">~3.300.000</td>
           </tr>
           <tr>
-            <td>La Guaira<br><span style="color:var(--text-3);font-size:8.5px">Aeropuerto Maiquetía</span></td>
+            <td>La Guaira<br><span style="color:#f87171;font-size:8.5px;font-weight:700">⚠️ ZONA MÁS AFECTADA · Maiquetía clausurado</span></td>
             <td style="color:#fef08a;font-weight:800">VI</td>
             <td class="pop-num">~120.000</td>
           </tr>
@@ -852,7 +852,7 @@ const cities = [
   { ll:[10.453,-68.514], n:'Yumare',       c:'#cc0000', lv:'IX–X',   mmi:'Extremo',   note:'💥 MMI IX–X · Epicentro Mw 7.5 a 23 km. Zona de máximo impacto. Daño total posible.' },
   { ll:[10.172,-67.993], n:'Valencia',     c:'#ffaa00', lv:'VII',    mmi:'Muy Fuerte', note:'🟠 MMI VII · Carabobo. Edificios dañados. Daños moderados en estructuras.' },
   { ll:[10.254,-67.596], n:'Maracay',      c:'#ffaa00', lv:'VII',    mmi:'Muy Fuerte', note:'🟠 MMI VII · Aragua. Daños estructurales. Pánico generalizado.' },
-  { ll:[10.601,-66.930], n:'La Guaira',    c:'#ffff00', lv:'VI',     mmi:'Fuerte',    note:'🟡 MMI VI · Aeropuerto Maiquetía clausurado. Daños leves a moderados.' },
+  { ll:[10.601,-66.930], n:'La Guaira',    c:'#ff0000', lv:'VIII–IX', mmi:'Violento',  note:'🔴 MMI VIII–IX · UNA DE LAS ZONAS MÁS AFECTADAS. Aeropuerto Maiquetía clausurado por daños graves. Daños estructurales masivos en zona costera. Rescates en curso. Estado con mayor destrucción reportada.' },
   { ll:[10.064,-69.322], n:'Barquisimeto', c:'#ffff00', lv:'V–VI',   mmi:'Fuerte',    note:'🟡 MMI V–VI · Lara. Sismo sentido con fuerza. Objetos caídos. Pánico.' },
   { ll:[10.480,-68.010], n:'Morón',        c:'#ff6600', lv:'VIII',   mmi:'Severo',    note:'🟠 MMI VIII · Carabobo. Daños considerables. Posibles colapsos en estructuras débiles.' },
   { ll:[9.319, -70.638], n:'Mérida',       c:'#80ffaa', lv:'IV',     mmi:'Ligero',    note:'🟢 MMI IV · Sentido en interiores. Sin daños significativos reportados.' },
@@ -967,7 +967,7 @@ const SEARCH_DB = [
   { ll:[10.453,-68.514],  n:'Yumare',            sub:'Yaracuy — zona roja',  icon:'🏙', cat:'CIUDAD',   mmi:'IX–X',   zoom:12 },
   { ll:[10.172,-67.993],  n:'Valencia',          sub:'Carabobo',             icon:'🏙', cat:'CIUDAD',   mmi:'VII',    zoom:11 },
   { ll:[10.254,-67.596],  n:'Maracay',           sub:'Aragua',               icon:'🏙', cat:'CIUDAD',   mmi:'VII',    zoom:11 },
-  { ll:[10.601,-66.930],  n:'La Guaira',         sub:'Vargas / Aeropuerto',  icon:'🏙', cat:'CIUDAD',   mmi:'VI',     zoom:11 },
+  { ll:[10.601,-66.930],  n:'La Guaira — ZONA MÁS AFECTADA', sub:'Estado La Guaira · Aeropuerto clausurado · MMI VIII–IX', icon:'🔴', cat:'CIUDAD', mmi:'VIII–IX', zoom:11 },
   { ll:[10.064,-69.322],  n:'Barquisimeto',      sub:'Lara',                 icon:'🏙', cat:'CIUDAD',   mmi:'V–VI',   zoom:11 },
   { ll:[10.480,-68.010],  n:'Morón',             sub:'Carabobo',             icon:'🏙', cat:'CIUDAD',   mmi:'VIII',   zoom:12 },
   { ll:[9.319,-70.638],   n:'Mérida',            sub:'Estado Mérida',        icon:'🏙', cat:'CIUDAD',   mmi:'IV',     zoom:11 },
