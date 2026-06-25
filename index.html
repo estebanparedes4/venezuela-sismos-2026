@@ -990,9 +990,10 @@ const SEARCH_DB = [
   { ll:[10.075,-69.310],  n:'Ambulatorio Rafael V. Andrade (IVSS)',sub:'Barquisimeto, Lara',  icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
   // Aeropuerto
   { ll:[10.601,-66.991],  n:'Aeropuerto Simón Bolívar — Maiquetía', sub:'La Guaira · CLAUSURADO', icon:'✈️', cat:'INFRA', mmi:'VI', zoom:13 },
-  // DAÑOS CONFIRMADOS
-  { ll:[10.487,-66.850],  n:'🏚 PALO GRANDE — 2 Edificios Colapsados', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
-  { ll:[10.507,-66.899],  n:'🏚 SAN BERNARDINO — 1 Edificio Colapsado', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
+  // DAÑOS CONFIRMADOS — Edificios colapsados
+  { ll:[10.4885,-66.8485], n:'🏚 Ed. PETUNIA — COLAPSO TOTAL · Los Palos Grandes',   sub:'Los Palos Grandes, Caracas · 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:17 },
+  { ll:[10.4878,-66.8462], n:'🏚 Ed. SATURNO — COLAPSO TOTAL · Los Palos Grandes',   sub:'Los Palos Grandes, Caracas · 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:17 },
+  { ll:[10.507,-66.899],   n:'🏚 SAN BERNARDINO — 1 Edificio Colapsado', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
 ];
 
 // ── MARCADORES DE DAÑOS CONFIRMADOS ──────────────────────────────────────────
@@ -1003,8 +1004,9 @@ const mkDanoIcon = (n) => L.divIcon({
 });
 
 const danosConfirmados = [
-  { ll:[10.487,-66.850], n:'Palo Grande — 2 Edificios Colapsados',   dir:'Sector Palo Grande, Caracas',    detalles:'2 edificios residenciales colapsados. Equipos de rescate activados.', hora:'24-Jun-2026' },
-  { ll:[10.507,-66.899], n:'San Bernardino — 1 Edificio Colapsado',  dir:'Urb. San Bernardino, Caracas',   detalles:'1 edificio de apartamentos colapsado. Posibles víctimas atrapadas.', hora:'24-Jun-2026' },
+  { ll:[10.4885,-66.8485], n:'Edificio PETUNIA — COLAPSO TOTAL',    dir:'Los Palos Grandes, Caracas',     detalles:'Colapso total confirmado. Labores de rescate en curso. Posibles víctimas atrapadas bajo escombros.', hora:'24-Jun-2026' },
+  { ll:[10.4878,-66.8462], n:'Edificio SATURNO — COLAPSO TOTAL',    dir:'Los Palos Grandes, Caracas',     detalles:'Colapso total confirmado. Bomberos y Protección Civil desplegados. Búsqueda y rescate activa.', hora:'24-Jun-2026' },
+  { ll:[10.507,-66.899],   n:'San Bernardino — 1 Edificio Colapsado', dir:'Urb. San Bernardino, Caracas', detalles:'1 edificio de apartamentos colapsado. Posibles víctimas atrapadas. Equipos de rescate en sitio.', hora:'24-Jun-2026' },
 ];
 
 danosConfirmados.forEach(({ ll, n, dir, detalles, hora }) => {
@@ -1528,10 +1530,10 @@ const NOTICIAS = [
   },
   {
     hora: '24/06/2026 · 7:39 PM',
-    titulo: '🏚️ Cabello: Edificios y viviendas colapsados en Palos Grandes y Altamira — Equipos de rescate activados',
-    resumen: 'Balance preliminar: daños estructurales en municipio Chacao y estado La Guaira. "Se nos han venido unos edificios y viviendas en Palos Grandes, Altamira". Estados afectados: Trujillo, Carabobo, Yaracuy, Aragua, Miranda, La Guaira y Caracas.',
+    titulo: '🏚️ CONFIRMADO: Edificios Petunia y Saturno colapsados en Los Palos Grandes — Equipos de rescate activados',
+    resumen: 'Balance Cabello: colapso total de Edificio Petunia y Edificio Saturno en Los Palos Grandes. Daños estructurales graves en municipio Chacao y estado La Guaira. Estados afectados: Trujillo, Carabobo, Yaracuy, Aragua, Miranda, La Guaira y Caracas.',
     url: 'https://mazo4f.com/ministro-cabello-ofrece-balance-tras-sismo-registrado-en-el-pais-tenemos-algunos-danos-y-estamos-atendiendolos',
-    nuevo: false
+    nuevo: true
   },
   {
     hora: '24/06/2026 · 7:25 PM',
