@@ -454,12 +454,12 @@
       <div class="quake-card q1">
         <div class="q-label">1° Precursor · 22:04:33 UTC · USGS us6000t7zc</div>
         <div class="q-mag">Mw 7.2</div>
-        <div class="q-detail">24 km ENE de San Felipe · 10.387°N 68.520°W<br>Prof. 21.9 km · Municipio Veroes, Yaracuy<br>MMI máx: <strong style="color:#f97316">VIII–IX</strong> · Alerta PAGER: 🔴 Roja</div>
+        <div class="q-detail">23 km SE de Yumare · 10.436°N 68.5277°W<br>Prof. 20.3 km · Municipio Veroes, Yaracuy<br>MMI máx: <strong style="color:#f97316">8.888 ≈ VIII–IX</strong> · Alerta PAGER: 🔴 Roja · ✅ reviewed</div>
       </div>
       <div class="quake-card q2">
         <div class="q-label">2° Principal · 22:05:12 UTC (+39 seg) · USGS us6000t7zp</div>
         <div class="q-mag">Mw 7.5</div>
-        <div class="q-detail">23 km SE de Yumare · 10.453°N 68.514°W<br>Prof. 10.0 km (superficial) · Municipio Veroes<br>MMI USGS: <strong style="color:#f43f5e">8.77 ≈ VIII–IX</strong> · CDI: 8.7 (260 rep.)</div>
+        <div class="q-detail">28 km SE de Yumare · 10.4351°N 68.4716°W<br>Prof. 10.0 km (superficial) · Municipio Veroes<br>MMI USGS: <strong style="color:#f43f5e">8.857 ≈ VIII–IX</strong> · CDI: 8.7 (394 rep.) · ✅ reviewed</div>
       </div>
       <div class="stats">
         <div class="stat"><div class="stat-n">260</div><div class="stat-l">Reportes CDI</div></div>
@@ -1082,12 +1082,13 @@
 <!-- Leaflet JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// ── USGS OFICIAL DATA (FDSNWS API verificado 24 Jun 2026) ────────────────
-// Mw 7.5: us6000t7zp · lat 10.453, lon -68.5139 · prof. 10 km · MMI 8.77 · ALERTA ROJA
-// Mw 7.2: us6000t7zc · lat 10.3874, lon -68.52  · prof. 21.9 km · MMI 8.77 · ALERTA ROJA
+// ── USGS OFICIAL DATA (FDSNWS API reviewed — 25 Jun 2026) ────────────────────
+// Mw 7.5: us6000t7zp · lat 10.4351, lon -68.4716 · prof. 10 km · MMI 8.857 · ALERTA ROJA · 394 reportes CDI
+// Mw 7.2: us6000t7zc · lat 10.436,  lon -68.5277 · prof. 20.3 km · MMI 8.888 · ALERTA ROJA
+// AMBOS EPICENTROS: ~6 km de separación, zona SE de Yumare (Yaracuy) — misma secuencia de ruptura
 
-const EPI75 = [10.453, -68.5139];   // Mw 7.5 — 23 km SE de Yumare (MAINSHOCK)
-const EPI72 = [10.3874, -68.52];    // Mw 7.2 — 24 km ENE de San Felipe (FORESHOCK)
+const EPI75 = [10.4351, -68.4716];  // Mw 7.5 — 28 km SE de Yumare (MAINSHOCK) · reviewed
+const EPI72 = [10.436, -68.5277];   // Mw 7.2 — 23 km SE de Yumare (FORESHOCK) · reviewed
 
 // ── INIT MAP ──────────────────────────────────────────────────────────────
 const map = L.map('map', { center: [10.2, -68.0], zoom: 7, zoomControl: true });
@@ -1161,16 +1162,17 @@ L.marker(EPI75, { icon: mkEpiMarker('#f43f5e', '7.5', true), zIndexOffset: 1000 
     <div class="pop-title">💥 SISMO PRINCIPAL — Mw 7.5</div>
     <div class="pop-body">
       <b>ID USGS:</b> us6000t7zp<br>
-      <b>Fecha/Hora:</b> 24 Jun 2026 · 22:05:12 UTC<br>
-      <b>Ubicación:</b> 23 km SE de Yumare, Venezuela<br>
-      <b>Coordenadas:</b> 10.453°N / 68.514°W<br>
+      <b>Fecha/Hora:</b> 24 Jun 2026 · 22:04:31 UTC<br>
+      <b>Ubicación:</b> 28 km SE de Yumare, Venezuela<br>
+      <b>Coordenadas:</b> 10.4351°N / 68.4716°W<br>
       <b>Profundidad:</b> 10.0 km (superficial)<br>
-      <b>MMI USGS:</b> 8.77 ≈ <span style="color:#f43f5e;font-weight:800">VIII–IX</span><br>
-      <b>CDI comunitario:</b> 8.7 (260 reportes)<br>
+      <b>MMI USGS:</b> 8.857 ≈ <span style="color:#f43f5e;font-weight:800">VIII–IX</span><br>
+      <b>CDI comunitario:</b> 8.7 (<b>394 reportes</b>)<br>
       <b>Alerta PAGER:</b> <span style="color:#f43f5e;font-weight:800">ROJA</span><br>
-      <b>Tipo:</b> Mww (tensor momento)
+      <b>Tipo:</b> Mww (tensor momento)<br>
+      <b>Estado USGS:</b> ✅ Revisado (<i>reviewed</i>)
     </div>
-    <span class="pop-badge pb-epi">MAINSHOCK Mw 7.5 · USGS us6000t7zp</span>
+    <span class="pop-badge pb-epi">MAINSHOCK Mw 7.5 · USGS us6000t7zp · reviewed</span>
   `);
 
 // 2. Mw 7.2 — FORESHOCK (estrella naranja, sin pulso)
@@ -1180,15 +1182,16 @@ L.marker(EPI72, { icon: mkEpiMarker('#f97316', '7.2', false), zIndexOffset: 900 
     <div class="pop-body">
       <b>ID USGS:</b> us6000t7zc (atth5pbk)<br>
       <b>Fecha/Hora:</b> 24 Jun 2026 · 22:04:33 UTC<br>
-      <b>Ubicación:</b> 24 km ENE de San Felipe, Venezuela<br>
-      <b>Coordenadas:</b> 10.387°N / 68.520°W<br>
-      <b>Profundidad:</b> 21.9 km<br>
-      <b>MMI USGS:</b> 8.77 ≈ <span style="color:#f97316;font-weight:800">VIII–IX</span><br>
+      <b>Ubicación:</b> 23 km SE de Yumare, Venezuela<br>
+      <b>Coordenadas:</b> 10.436°N / 68.5277°W<br>
+      <b>Profundidad:</b> 20.3 km<br>
+      <b>MMI USGS:</b> 8.888 ≈ <span style="color:#f97316;font-weight:800">VIII–IX</span><br>
       <b>Alerta PAGER:</b> <span style="color:#f43f5e;font-weight:800">ROJA</span><br>
       <b>Tipo:</b> Mww (tensor momento)<br>
-      <b>Nota:</b> Ocurre 39 seg. antes del mainshock
+      <b>Nota:</b> Ocurre 38 seg. antes del mainshock · ~6 km al W del Mw 7.5<br>
+      <b>Estado USGS:</b> ✅ Revisado (<i>reviewed</i>)
     </div>
-    <span class="pop-badge" style="background:#f97316;color:#fff">FORESHOCK Mw 7.2 · USGS us6000t7zc</span>
+    <span class="pop-badge" style="background:#f97316;color:#fff">FORESHOCK Mw 7.2 · USGS us6000t7zc · reviewed</span>
   `);
 
 // Línea entre epicentros para mostrar secuencia
@@ -1200,7 +1203,7 @@ L.polyline([EPI72, EPI75], {
 const cities = [
   { ll:[10.480,-66.904], n:'CARACAS',      c:'#fef08a', lv:'V–VI',  mmi:'Fuerte',     note:'🟡 MMI V–VI · Altamira y Los Palos Grandes: colapsos confirmados. Gas cortado. Edificios destruidos.' },
   { ll:[10.335,-68.745], n:'San Felipe',   c:'#ff0000', lv:'VIII–IX', mmi:'Violento',  note:'🔴 MMI VIII–IX · Capital de Yaracuy. Zona próxima al epicentro. Daños graves estructurales.' },
-  { ll:[10.453,-68.514], n:'Yumare',       c:'#cc0000', lv:'IX–X',   mmi:'Extremo',   note:'💥 MMI IX–X · Epicentro Mw 7.5 a 23 km. Zona de máximo impacto. Daño total posible.' },
+  { ll:[10.453,-68.514], n:'Yumare',       c:'#cc0000', lv:'IX–X',   mmi:'Extremo',   note:'💥 MMI IX–X · 28 km NO del epicentro Mw 7.5 (28 km SE de Yumare, revisado USGS). Zona de máximo impacto.' },
   { ll:[10.172,-67.993], n:'Valencia',     c:'#ffaa00', lv:'VII',    mmi:'Muy Fuerte', note:'🟠 MMI VII · Carabobo. Edificios dañados. Daños moderados en estructuras.' },
   { ll:[10.254,-67.596], n:'Maracay',      c:'#ffaa00', lv:'VII',    mmi:'Muy Fuerte', note:'🟠 MMI VII · Aragua. Daños estructurales. Pánico generalizado.' },
   { ll:[10.601,-66.930], n:'La Guaira',    c:'#ff0000', lv:'VIII–IX', mmi:'Violento',  note:'🔴 MMI VIII–IX · UNA DE LAS ZONAS MÁS AFECTADAS. Aeropuerto Maiquetía clausurado por daños graves. Daños estructurales masivos en zona costera. Rescates en curso. Estado con mayor destrucción reportada.' },
@@ -1310,8 +1313,8 @@ ivssCenters.forEach(({ ll, n, est, tipo, tel, dir, mmi }) => {
 // Base de datos local (todos los puntos del mapa)
 const SEARCH_DB = [
   // Epicentros
-  { ll:[10.453,-68.5139], n:'Epicentro Mw 7.5 — MAINSHOCK',    sub:'Municipio Veroes, Yaracuy',     icon:'💥', cat:'EPICENTRO', mmi:'IX–X',   zoom:12 },
-  { ll:[10.3874,-68.52],  n:'Epicentro Mw 7.2 — Precursor',    sub:'24 km ENE San Felipe, Yaracuy', icon:'⚡', cat:'EPICENTRO', mmi:'VIII–IX', zoom:12 },
+  { ll:[10.4351,-68.4716], n:'Epicentro Mw 7.5 — MAINSHOCK',   sub:'28 km SE Yumare, Yaracuy · reviewed', icon:'💥', cat:'EPICENTRO', mmi:'IX–X',   zoom:12 },
+  { ll:[10.436,-68.5277],  n:'Epicentro Mw 7.2 — Precursor',  sub:'23 km SE Yumare, Yaracuy · reviewed', icon:'⚡', cat:'EPICENTRO', mmi:'VIII–IX', zoom:12 },
   // Ciudades
   { ll:[10.480,-66.904],  n:'Caracas',           sub:'Distrito Capital',     icon:'🏙', cat:'CIUDAD',   mmi:'V–VI',   zoom:11 },
   { ll:[10.335,-68.745],  n:'San Felipe',        sub:'Capital de Yaracuy',   icon:'🏙', cat:'CIUDAD',   mmi:'VIII–IX',zoom:11 },
