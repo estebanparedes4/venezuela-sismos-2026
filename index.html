@@ -1308,15 +1308,16 @@ const osmCenters = [
 // Crear layer group OSM (activado por defecto pero togglable)
 const osmLayer = L.layerGroup();
 osmCenters.forEach(({ ll, n, emg }) => {
-  const col  = emg ? '#f0abfc' : '#22d3ee';    // magenta-claro = emergencia, cian = regular
-  const r    = emg ? 7 : 5;
-  const tip  = emg ? '🚨 HOSPITAL / EMERGENCIAS' : '🏥 CENTRO DE SALUD';
+  // Naranja/ámbar → claramente distinto del verde IVSS y del azul hospitales estratégicos
+  const col  = emg ? '#f97316' : '#fbbf24';   // naranja oscuro = emg, ámbar = regular
+  const r    = emg ? 6 : 4;
+  const tip  = emg ? '🚨 HOSPITAL c/ EMERGENCIAS' : '🏥 CENTRO DE SALUD OSM';
   L.circleMarker(ll, {
     radius: r,
     fillColor: col,
-    color: '#fff',
-    weight: 1.5,
-    fillOpacity: 0.88,
+    color: '#1e293b',    // borde oscuro para contraste
+    weight: 1,
+    fillOpacity: 0.80,
     interactive: true,
   }).bindPopup(
     `<div class="pop-title" style="color:${col}">${emg ? '🚨' : '🏥'} ${n}</div>` +
@@ -1341,11 +1342,11 @@ layerCtrl.onAdd = function() {
   div.innerHTML = `
     <div style="font-weight:800;color:#38bdf8;margin-bottom:8px;letter-spacing:.5px">CAPAS DEL MAPA</div>
     <label style="display:flex;align-items:center;gap:6px;margin-bottom:4px;cursor:pointer">
-      <input type="checkbox" id="toggle-osm" checked style="accent-color:#22d3ee">
-      <span style="color:#22d3ee">⬤</span> Centros de salud OSM <span style="color:#64748b">(${osmCenters.length})</span>
+      <input type="checkbox" id="toggle-osm" checked style="accent-color:#fbbf24">
+      <span style="color:#fbbf24">⬤</span> Centros de salud OSM <span style="color:#64748b">(${osmCenters.length})</span>
     </label>
     <div style="color:#64748b;font-size:10px;margin-top:6px">
-      🟦 Regular &nbsp;&nbsp; 🟣 Con emergencias<br>
+      <span style="color:#fbbf24">⬤</span> Regular &nbsp; <span style="color:#f97316">⬤</span> Con emergencias<br>
       <span style="color:#475569">Fuente: OpenStreetMap · Jun 2026</span>
     </div>`;
   L.DomEvent.disableClickPropagation(div);
