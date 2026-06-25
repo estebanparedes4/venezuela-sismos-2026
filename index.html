@@ -775,7 +775,7 @@ const hospitals = [
   { ll:[10.158,-68.898], n:"Hosp. Dr. Tiburcio Garrido",                   loc:"Chivacoa, Yaracuy — MMI VII–VIII",   st:"⚠️ Posibles daños — punto triaje",  mmi:'VII–VIII' },
   { ll:[10.155,-68.567], n:"Hosp. Padre Oliveros",                          loc:"Nirgua, Yaracuy — MMI VII–VIII",     st:"? Estado no confirmado",             mmi:'VII–VIII' },
   { ll:[10.492,-66.899], n:"Hosp. Universitario de Caracas (HUC)",          loc:"Ciudad Universitaria, Caracas — MMI V–VI", st:"✅ Referencia nacional — activo", mmi:'V–VI' },
-  { ll:[10.493,-66.898], n:"Hosp. Vargas de Caracas",                       loc:"La Pastora, Caracas — MMI V–VI",    st:"✅ Activo — centro histórico",       mmi:'V–VI' },
+  { ll:[10.479,-66.903], n:"Hosp. Vargas de Caracas",                       loc:"La Pastora, Caracas — MMI V–VI",    st:"✅ Activo — centro histórico",       mmi:'V–VI' },
   { ll:[10.460,-67.020], n:"Hosp. Dr. Miguel Pérez Carreño",                loc:"La Yaguara, Caracas Oeste — MMI V–VI", st:"✅ IVSS — referencia activo",     mmi:'V–VI' },
   { ll:[10.485,-66.910], n:"Hosp. de Niños J.M. de los Ríos",               loc:"Caracas Centro — MMI V–VI",         st:"? Pendiente confirmación",           mmi:'V–VI' },
   { ll:[10.490,-66.940], n:"Hosp. Gral. Lídice 'Dr. Jesús Yerena'",         loc:"Lídice, Caracas — MMI V–VI",        st:"✅ Operativo reportado",             mmi:'V–VI' },
@@ -797,29 +797,29 @@ const mkIvssIcon = () => L.divIcon({
 
 const ivssCenters = [
   // YARACUY — Zona epicentro MMI VIII-IX
-  { ll:[10.307,-68.890], n:"Ambulatorio Chivacoa",                      est:"Yaracuy",  tipo:"Ambulatorio", tel:"(0251) 883.02.34", dir:"Av. Bicentenario, Sector Pueblo Nuevo, Chivacoa",           mmi:"VIII–IX" },
+  { ll:[10.158,-68.897], n:"Ambulatorio Chivacoa",                      est:"Yaracuy",  tipo:"Ambulatorio", tel:"(0251) 883.02.34", dir:"Av. Bicentenario, Sector Pueblo Nuevo, Chivacoa",           mmi:"VIII–IX" },
   // CARABOBO — MMI VII-VIII
   { ll:[10.195,-68.015], n:"Hospital Dr. Ángel Larralde",               est:"Carabobo", tipo:"Hospital",    tel:"(0241) 867.29.23", dir:"Altos de la Colina Psiquiatría de Bárbula, Valencia",       mmi:"VII" },
   { ll:[10.480,-68.012], n:"Hosp. Dr. José Francisco Molina Sierra",    est:"Carabobo", tipo:"Hospital",    tel:"(0242) 361.46.10", dir:"Sector Rancho Grande, Puerto Cabello",                      mmi:"VII–VIII" },
   { ll:[10.186,-67.980], n:"Ambulatorio Dr. Luis Guada Lacau",          est:"Carabobo", tipo:"Ambulatorio", tel:"(0241) 868.74.13", dir:"Urb. Caprenco, Valencia",                                  mmi:"VII" },
   { ll:[10.165,-68.005], n:"Ambulatorio Dr. Emiliano Azcunez",          est:"Carabobo", tipo:"Ambulatorio", tel:"(0241) 831.34.15", dir:"Av. Lisandro Alvarado, Valencia",                          mmi:"VII" },
-  { ll:[10.247,-68.040], n:"Ambulatorio Paraparal",                     est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 581.35.85", dir:"Urb. Paraparal, Sector Rosa Linda, Los Guayos",            mmi:"VII" },
+  { ll:[10.238,-67.917], n:"Ambulatorio Paraparal",                     est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 581.35.85", dir:"Urb. Paraparal, Sector Rosa Linda, Los Guayos",            mmi:"VII" },
   { ll:[10.472,-68.010], n:"Ambulatorio Santa Rosa",                    est:"Carabobo", tipo:"Ambulatorio", tel:"(0242) 364.05.14", dir:"Urb. Santa Cruz, Zona Industrial, Puerto Cabello",         mmi:"VII–VIII" },
   { ll:[10.489,-68.195], n:"Ambulatorio Morón",                         est:"Carabobo", tipo:"Ambulatorio", tel:"(0242) 372.00.41", dir:"Colina de Pequiven, final calle Nº4, Morón",               mmi:"VII–VIII" },
-  { ll:[10.252,-67.782], n:"Ambulatorio Dr. Luis Izaguirre Rodríguez",  est:"Carabobo", tipo:"Ambulatorio", tel:"(0243) 263.20.66", dir:"Barrio Mariscal Sucre, Mariara",                           mmi:"VI–VII" },
+  { ll:[10.253,-67.793], n:"Ambulatorio Dr. Luis Izaguirre Rodríguez",  est:"Carabobo", tipo:"Ambulatorio", tel:"(0243) 263.20.66", dir:"Barrio Mariscal Sucre, Mariara",                           mmi:"VI–VII" },
   { ll:[10.225,-68.120], n:"Ambulatorio Dra. Bélgica Tovar Herrera",   est:"Carabobo", tipo:"Ambulatorio", tel:"(0241) 894.18.04", dir:"Urb. Pocaterra, Av. 6, Tucuyito",                          mmi:"VII" },
   { ll:[10.217,-67.773], n:"Ambulatorio Guacara-Yagua",                 est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 571.68.14", dir:"Calle Sucre c/Briceño, carretera ppal de Yagua",          mmi:"VI–VII" },
   { ll:[10.273,-67.757], n:"Ambulatorio Dr. Luis Rodríguez Panacci",    est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 552.06.94", dir:"Calle Ppal José Tomas Gallardo, San Joaquín",              mmi:"VI" },
   // ARAGUA — MMI VI-VII
   { ll:[10.244,-67.595], n:"Hospital Dr. José María Carabaño Tosta",   est:"Aragua",   tipo:"Hospital",    tel:"(0243) 236.53.76", dir:"Av. Principal de San José, Maracay",                       mmi:"VII" },
   { ll:[10.212,-67.573], n:"Hospital José Antonio Vargas",              est:"Aragua",   tipo:"Hospital",    tel:"(0243) 267.30.80", dir:"Urb. La Ovallera, Palo Negro",                             mmi:"VI–VII" },
-  { ll:[10.267,-67.652], n:"Centro Ambulatorio El Limón",               est:"Aragua",   tipo:"Ambulatorio", tel:"(0243) 283.30.09", dir:"Av. Universidad c/Av. Caña de Azúcar, El Limón",          mmi:"VII" },
+  { ll:[10.279,-67.633], n:"Centro Ambulatorio El Limón",               est:"Aragua",   tipo:"Ambulatorio", tel:"(0243) 283.30.09", dir:"Av. Universidad c/Av. Caña de Azúcar, El Limón",          mmi:"VII" },
   { ll:[10.248,-67.592], n:"Centro Ambulatorio Negra Matea",            est:"Aragua",   tipo:"Ambulatorio", tel:"(0243) 554.81.34", dir:"Calle Pichincha, Santa Rosa, Maracay",                     mmi:"VII" },
   { ll:[10.233,-67.335], n:"Centro Ambulatorio Dr. Luis Richard Díaz",  est:"Aragua",   tipo:"Ambulatorio", tel:"(0244) 321.24.64", dir:"Urb. Las Mercedes, La Victoria",                          mmi:"V–VI" },
   { ll:[10.185,-67.456], n:"Centro Ambulatorio Francisco Chico Matos",  est:"Aragua",   tipo:"Ambulatorio", tel:"(0244) 396.34.90", dir:"Zona Industrial Corinsa, Cagua",                          mmi:"V–VI" },
   // LARA — MMI V-VI (oeste del epicentro)
   { ll:[10.073,-69.330], n:"Hospital Dr. Pastor Oropeza Riera",         est:"Lara",     tipo:"Hospital",    tel:"(0251) 442.10.89", dir:"Prolongación Av. La Salle, Barquisimeto",                  mmi:"V–VI" },
-  { ll:[10.062,-69.322], n:"Hospital Dr. Juan Daza Pereira",            est:"Lara",     tipo:"Hospital",    tel:"(0251) 445.45.42", dir:"Carrera 13 entre calle 49 y 50, Barquisimeto",             mmi:"V–VI" },
+  { ll:[10.062,-69.340], n:"Hospital Dr. Juan Daza Pereira",            est:"Lara",     tipo:"Hospital",    tel:"(0251) 445.45.42", dir:"Carrera 13 entre calle 49 y 50, Barquisimeto",             mmi:"V–VI" },
   { ll:[10.075,-69.310], n:"Ambulatorio Dr. Rafael Vicente Andrade",    est:"Lara",     tipo:"Ambulatorio", tel:"(0251) 445.39.23", dir:"Barrio Unión, Barquisimeto",                               mmi:"V–VI" },
 ];
 
@@ -849,7 +849,7 @@ const SEARCH_DB = [
   { ll:[10.212,-67.573],  n:'Palo Negro',        sub:'Aragua',               icon:'🏙', cat:'CIUDAD',   mmi:'VI–VII', zoom:12 },
   { ll:[10.233,-67.335],  n:'La Victoria',       sub:'Aragua',               icon:'🏙', cat:'CIUDAD',   mmi:'V–VI',   zoom:12 },
   { ll:[10.185,-67.456],  n:'Cagua',             sub:'Aragua',               icon:'🏙', cat:'CIUDAD',   mmi:'V–VI',   zoom:12 },
-  { ll:[10.252,-67.782],  n:'Mariara',           sub:'Carabobo',             icon:'🏙', cat:'CIUDAD',   mmi:'VI–VII', zoom:12 },
+  { ll:[10.253,-67.793],  n:'Mariara',           sub:'Carabobo',             icon:'🏙', cat:'CIUDAD',   mmi:'VI–VII', zoom:12 },
   { ll:[10.480,-68.012],  n:'Puerto Cabello',    sub:'Carabobo',             icon:'🏙', cat:'CIUDAD',   mmi:'VII–VIII',zoom:11 },
   // Hospitales de referencia
   { ll:[10.335,-68.745],  n:'Hosp. Central Plácido Rodríguez',  sub:'San Felipe, Yaracuy',        icon:'🏥', cat:'HOSPITAL',  mmi:'VIII–IX',zoom:13 },
@@ -861,32 +861,32 @@ const SEARCH_DB = [
   { ll:[10.485,-66.910],  n:'Hosp. de Niños J.M. de los Ríos', sub:'Caracas Centro',            icon:'🏥', cat:'HOSPITAL',  mmi:'V–VI',   zoom:13 },
   { ll:[10.330,-68.750],  n:'Cruz Roja Venezolana — Yaracuy',  sub:'San Felipe',                 icon:'🏥', cat:'HOSPITAL',  mmi:'VIII–IX',zoom:13 },
   // IVSS
-  { ll:[10.307,-68.890],  n:'Ambulatorio Chivacoa (IVSS)',      sub:'Yaracuy · (0251) 883.02.34',icon:'➕', cat:'IVSS',      mmi:'VIII–IX',zoom:13 },
+  { ll:[10.158,-68.897],  n:'Ambulatorio Chivacoa (IVSS)',      sub:'Yaracuy · (0251) 883.02.34',icon:'➕', cat:'IVSS',      mmi:'VIII–IX',zoom:13 },
   { ll:[10.195,-68.015],  n:'Hosp. Ángel Larralde (IVSS)',      sub:'Bárbula, Valencia',         icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.480,-68.012],  n:'Hosp. Molina Sierra (IVSS)',       sub:'Puerto Cabello',            icon:'➕', cat:'IVSS',      mmi:'VII–VIII',zoom:13 },
   { ll:[10.186,-67.980],  n:'Ambulatorio Luis Guada Lacau (IVSS)',sub:'Valencia',               icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.165,-68.005],  n:'Ambulatorio Emiliano Azcunez (IVSS)',sub:'Valencia',              icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
-  { ll:[10.247,-68.040],  n:'Ambulatorio Paraparal (IVSS)',      sub:'Los Guayos, Carabobo',    icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
+  { ll:[10.238,-67.917],  n:'Ambulatorio Paraparal (IVSS)',      sub:'Los Guayos, Carabobo',    icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.472,-68.010],  n:'Ambulatorio Santa Rosa (IVSS)',     sub:'Puerto Cabello',          icon:'➕', cat:'IVSS',      mmi:'VII–VIII',zoom:13 },
   { ll:[10.489,-68.195],  n:'Ambulatorio Morón (IVSS)',          sub:'Morón, Carabobo',         icon:'➕', cat:'IVSS',      mmi:'VII–VIII',zoom:13 },
-  { ll:[10.252,-67.782],  n:'Ambulatorio Luis Izaguirre (IVSS)', sub:'Mariara, Carabobo',       icon:'➕', cat:'IVSS',      mmi:'VI–VII', zoom:13 },
+  { ll:[10.253,-67.793],  n:'Ambulatorio Luis Izaguirre (IVSS)', sub:'Mariara, Carabobo',       icon:'➕', cat:'IVSS',      mmi:'VI–VII', zoom:13 },
   { ll:[10.225,-68.120],  n:'Ambulatorio Bélgica Tovar (IVSS)',  sub:'Tucuyito, Carabobo',      icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.217,-67.773],  n:'Ambulatorio Guacara-Yagua (IVSS)',  sub:'Yagua, Carabobo',        icon:'➕', cat:'IVSS',      mmi:'VI–VII', zoom:13 },
   { ll:[10.273,-67.757],  n:'Ambulatorio Rodríguez Panacci (IVSS)',sub:'San Joaquín, Carabobo',icon:'➕', cat:'IVSS',      mmi:'VI',     zoom:13 },
   { ll:[10.244,-67.595],  n:'Hosp. Carabaño Tosta (IVSS)',       sub:'Maracay, Aragua',        icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.212,-67.573],  n:'Hosp. José Antonio Vargas (IVSS)',  sub:'Palo Negro, Aragua',     icon:'➕', cat:'IVSS',      mmi:'VI–VII', zoom:13 },
-  { ll:[10.267,-67.652],  n:'Ambulatorio El Limón (IVSS)',        sub:'El Limón, Maracay',      icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
+  { ll:[10.279,-67.633],  n:'Ambulatorio El Limón (IVSS)',        sub:'El Limón, Maracay',      icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.248,-67.592],  n:'Ambulatorio Negra Matea (IVSS)',     sub:'Santa Rosa, Maracay',    icon:'➕', cat:'IVSS',      mmi:'VII',    zoom:13 },
   { ll:[10.233,-67.335],  n:'Ambulatorio Luis Richard Díaz (IVSS)',sub:'La Victoria, Aragua',  icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
   { ll:[10.185,-67.456],  n:'Ambulatorio Chico Matos (IVSS)',     sub:'Cagua, Aragua',         icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
   { ll:[10.073,-69.330],  n:'Hosp. Pastor Oropeza Riera (IVSS)', sub:'Barquisimeto, Lara',    icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
-  { ll:[10.062,-69.322],  n:'Hosp. Juan Daza Pereira (IVSS)',    sub:'Barquisimeto, Lara',    icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
+  { ll:[10.062,-69.340],  n:'Hosp. Juan Daza Pereira (IVSS)',    sub:'Barquisimeto, Lara',    icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
   { ll:[10.075,-69.310],  n:'Ambulatorio Rafael V. Andrade (IVSS)',sub:'Barquisimeto, Lara',  icon:'➕', cat:'IVSS',      mmi:'V–VI',   zoom:13 },
   // Aeropuerto
   { ll:[10.601,-66.991],  n:'Aeropuerto Simón Bolívar — Maiquetía', sub:'La Guaira · CLAUSURADO', icon:'✈️', cat:'INFRA', mmi:'VI', zoom:13 },
   // DAÑOS CONFIRMADOS
   { ll:[10.487,-66.850],  n:'🏚 PALO GRANDE — 2 Edificios Colapsados', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
-  { ll:[10.505,-66.920],  n:'🏚 SAN BERNARDINO — 1 Edificio Colapsado', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
+  { ll:[10.507,-66.899],  n:'🏚 SAN BERNARDINO — 1 Edificio Colapsado', sub:'Caracas · REPORTE 24-Jun-2026', icon:'🏚', cat:'DAÑO', mmi:'V–VI', zoom:15 },
 ];
 
 // ── MARCADORES DE DAÑOS CONFIRMADOS ──────────────────────────────────────────
@@ -898,7 +898,7 @@ const mkDanoIcon = (n) => L.divIcon({
 
 const danosConfirmados = [
   { ll:[10.487,-66.850], n:'Palo Grande — 2 Edificios Colapsados',   dir:'Sector Palo Grande, Caracas',    detalles:'2 edificios residenciales colapsados. Equipos de rescate activados.', hora:'24-Jun-2026' },
-  { ll:[10.505,-66.920], n:'San Bernardino — 1 Edificio Colapsado',  dir:'Urb. San Bernardino, Caracas',   detalles:'1 edificio de apartamentos colapsado. Posibles víctimas atrapadas.', hora:'24-Jun-2026' },
+  { ll:[10.507,-66.899], n:'San Bernardino — 1 Edificio Colapsado',  dir:'Urb. San Bernardino, Caracas',   detalles:'1 edificio de apartamentos colapsado. Posibles víctimas atrapadas.', hora:'24-Jun-2026' },
 ];
 
 danosConfirmados.forEach(({ ll, n, dir, detalles, hora }) => {
