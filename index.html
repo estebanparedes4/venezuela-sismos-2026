@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terremotos Venezuela 2026 — Mapa Sísmico & Análisis</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Mapa interactivo de los terremotos Mw 7.2 y Mw 7.5 ocurridos en Venezuela el 24 de junio de 2026. Zonas afectadas, hospitales estratégicos y puntos clave." />
+  <meta name="keywords" content="terremoto Venezuela 2026, sismo Yaracuy, mapa sísmico, Caracas terremoto, FUNVISIS, hospitales Venezuela" />
+  <meta name="author" content="Análisis sísmico — 24 Jun 2026" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="🇻🇪 Terremotos Venezuela 2026 — Mapa Interactivo" />
+  <meta property="og:description" content="Dos sismos Mw 7.2 y 7.5 sacudieron Venezuela el 24 junio 2026. Mapa de zonas afectadas y hospitales estratégicos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Flag_of_Venezuela.svg/320px-Flag_of_Venezuela.svg.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Terremotos Venezuela 2026 — Mapa Sísmico" />
+  <meta name="twitter:description" content="Mw 7.2 + Mw 7.5 · Yaracuy · 24 Jun 2026 · Mapa interactivo" />
+
+  <!-- Favicon inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-dark:    #0f172a;
+      --bg-card:    #1e293b;
+      --bg-deep:    #0a0f1e;
+      --border:     #334155;
+      --red:        #f43f5e;
+      --orange:     #f97316;
+      --yellow:     #eab308;
+      --blue:       #38bdf8;
+      --green:      #4ade80;
+      --text-1:     #f1f5f9;
+      --text-2:     #94a3b8;
+      --text-3:     #64748b;
+    }
+
+    html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-dark); color: var(--text-1); overflow: hidden; }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    #header {
+      background: var(--bg-card);
+      border-bottom: 2px solid var(--red);
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1000;
+    }
+    #header h1 { font-size: 13px; font-weight: 800; color: var(--red); letter-spacing: 0.4px; flex: 1; min-width: 200px; }
+    #header p  { font-size: 10px; color: var(--text-3); }
+    #header .badge-live {
+      background: var(--red); color: #fff; font-size: 9px; font-weight: 800;
+      padding: 2px 7px; border-radius: 3px; letter-spacing: 1px;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+    /* ── ALERT BANNER ───────────────────────────────── */
+    #alert {
+      background: #450a0a;
+      border-left: 4px solid var(--red);
+      padding: 6px 14px;
+      font-size: 11px;
+      color: #fecaca;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 999;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────── */
+    #layout {
+      display: flex;
+      height: calc(100vh - 72px);
+    }
+
+    /* ── MAP ────────────────────────────────────────── */
+    #map { flex: 1; min-width: 0; }
+
+    /* ── SIDEBAR ────────────────────────────────────── */
+    #sidebar {
+      width: 290px;
+      background: var(--bg-card);
+      overflow-y: auto;
+      border-left: 1px solid var(--border);
+      flex-shrink: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-track { background: transparent; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* ── SIDEBAR TOGGLE (mobile) ────────────────────── */
+    #sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 2000;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    /* ── SECTION ────────────────────────────────────── */
+    .section { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    .section h3 {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.9px; color: var(--text-3); margin-bottom: 8px;
+    }
+
+    /* ── QUAKE CARDS ────────────────────────────────── */
+    .quake-card {
+      background: var(--bg-deep);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      border-left: 3px solid;
+    }
+    .quake-card.q1 { border-color: var(--orange); }
+    .quake-card.q2 { border-color: var(--red); }
+    .q-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-3); }
+    .q-mag   { font-size: 24px; font-weight: 900; line-height: 1.1; }
+    .q1 .q-mag { color: var(--orange); }
+    .q2 .q-mag { color: var(--red); }
+    .q-detail { font-size: 11px; color: var(--text-2); margin-top: 4px; line-height: 1.5; }
+
+    .stats { display: flex; gap: 6px; margin-top: 8px; }
+    .stat  { flex: 1; background: var(--bg-deep); border-radius: 6px; padding: 7px; text-align: center; }
+    .stat-n { font-size: 15px; font-weight: 800; color: var(--red); }
+    .stat-l { font-size: 9px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.4px; margin-top: 1px; }
+
+    /* ── ZONE LIST ──────────────────────────────────── */
+    .zone-list { list-style: none; }
+    .zone-item { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--bg-deep); font-size: 11px; }
+    .zone-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .zone-name { flex: 1; color: var(--text-1); font-weight: 500; }
+    .level-tag {
+      font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px;
+      white-space: nowrap;
+    }
+    .lv-c { background: #7f1d1d; color: #fca5a5; }
+    .lv-h { background: #7c2d12; color: #fdba74; }
+    .lv-m { background: #713f12; color: #fde68a; }
+
+    /* ── HOSPITAL LIST ──────────────────────────────── */
+    .hosp-list { list-style: none; }
+    .hosp-item { padding: 6px 0; border-bottom: 1px solid var(--bg-deep); }
+    .hosp-name { font-size: 11px; font-weight: 600; color: var(--blue); }
+    .hosp-loc  { font-size: 10px; color: var(--text-3); margin-top: 1px; }
+    .hosp-st   { font-size: 10px; margin-top: 2px; }
+    .st-ok   { color: var(--green); }
+    .st-warn { color: #fbbf24; }
+    .st-unk  { color: var(--text-3); }
+
+    /* ── LEGEND ─────────────────────────────────────── */
+    .legend     { padding: 10px 14px 14px; }
+    .legend h3  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.9px; color: var(--text-3); margin-bottom: 8px; }
+    .leg-item   { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-2); margin-bottom: 5px; }
+    .leg-dot    { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── SOURCE ─────────────────────────────────────── */
+    .source-note { font-size: 9px; color: var(--text-3); padding: 8px 14px 12px; border-top: 1px solid var(--border); line-height: 1.6; }
+    .source-note a { color: var(--blue); text-decoration: none; }
+
+    /* ── LEAFLET POPUPS ─────────────────────────────── */
+    .leaflet-popup-content-wrapper {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+      color: var(--text-1) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+    }
+    .leaflet-popup-tip { background: var(--bg-card) !important; }
+    .leaflet-popup-content { margin: 12px 14px !important; }
+    .pop-title { font-weight: 700; font-size: 13px; color: var(--text-1); margin-bottom: 5px; }
+    .pop-body  { font-size: 11px; color: var(--text-2); line-height: 1.65; }
+    .pop-badge {
+      display: inline-block; padding: 2px 7px; border-radius: 3px;
+      font-size: 10px; font-weight: 700; margin-top: 6px;
+    }
+    .pb-epi  { background: var(--red);    color: #fff; }
+    .pb-hosp { background: #0369a1;       color: #fff; }
+    .pb-crit { background: #991b1b;       color: #fca5a5; }
+    .pb-aff  { background: #92400e;       color: #fde68a; }
+    .pb-air  { background: #5b21b6;       color: #e9d5ff; }
+
+    /* ── CITY TOOLTIP ───────────────────────────────── */
+    .leaflet-tooltip.city-tip {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      font-size: 10px;
+      font-weight: 700;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* ── MOBILE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      html, body { overflow: hidden; }
+      #header h1 { font-size: 11px; }
+      #layout { position: relative; }
+      #map { width: 100%; }
+      #sidebar {
+        position: fixed;
+        top: 0; right: -100%; bottom: 0;
+        width: min(300px, 90vw);
+        z-index: 1500;
+        transition: right 0.3s ease;
+        padding-top: 60px;
+      }
+      #sidebar.open { right: 0; }
+      #sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      #layout { height: calc(100vh - 72px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header id="header">
+  <div style="flex:1;min-width:200px">
+    <h1>🇻🇪 TERREMOTOS VENEZUELA — 24 JUNIO 2026 · Mapa Sísmico &amp; Análisis Estratégico</h1>
+    <p>Epicentro: Municipio Veroes, Yaracuy · Fuentes: USGS · FUNVISIS · CNN · Infobae · Protección Civil VE</p>
+  </div>
+  <span class="badge-live">🔴 EN VIVO</span>
+</header>
+
+<div id="alert">
+  🚨 <strong>EMERGENCIA ACTIVA:</strong>&nbsp;
+  Rescates en curso · Aeropuerto Maiquetía clausurado · +6 réplicas · USGS PAGER: probabilidad alta de víctimas masivas
+</div>
+
+<!-- ════════════════════════════════════════════
+     LAYOUT
+════════════════════════════════════════════ -->
+<div id="layout">
+  <div id="map"></div>
+
+  <!-- ── SIDEBAR ── -->
+  <aside id="sidebar" aria-label="Panel de análisis sísmico">
+
+    <!-- SECUENCIA SÍSMICA -->
+    <div class="section">
+      <h3>📍 Secuencia Sísmica</h3>
+      <div class="quake-card q1">
+        <div class="q-label">1° Precursor · 22:04 UTC</div>
+        <div class="q-mag">Mw 7.2</div>
+        <div class="q-detail">24 km ENE de San Felipe · Prof. 21.9 km<br>Municipio Veroes, Yaracuy</div>
+      </div>
+      <div class="quake-card q2">
+        <div class="q-label">2° Principal · 22:04:39 UTC (+39 seg)</div>
+        <div class="q-mag">Mw 7.5</div>
+        <div class="q-detail">SE de Yumare · Prof. 10 km (superficial)<br>Municipio Veroes, Yaracuy</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-n">+6</div><div class="stat-l">Réplicas</div></div>
+        <div class="stat"><div class="stat-n">10 km</div><div class="stat-l">Prof. mín.</div></div>
+        <div class="stat"><div class="stat-n">7.5</div><div class="stat-l">Mw máx.</div></div>
+      </div>
+    </div>
+
+    <!-- ZONAS AFECTADAS -->
+    <div class="section">
+      <h3>🗺 Zonas más Afectadas</h3>
+      <ul class="zone-list">
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Yaracuy (Veroes / San Felipe)</span><span class="level-tag lv-c">CRÍTICO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Altamira</span><span class="level-tag lv-c">CRÍTICO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--red)"></div><span class="zone-name">Caracas — Los Palos Grandes</span><span class="level-tag lv-c">CRÍTICO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Carabobo (Morón / Valencia)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">La Guaira (Aeropuerto)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--orange)"></div><span class="zone-name">Aragua (Maracay)</span><span class="level-tag lv-h">ALTO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Lara (Barquisimeto)</span><span class="level-tag lv-m">MEDIO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Miranda</span><span class="level-tag lv-m">MEDIO</span></li>
+        <li class="zone-item"><div class="zone-dot" style="background:var(--yellow)"></div><span class="zone-name">Trujillo</span><span class="level-tag lv-m">MEDIO</span></li>
+      </ul>
+    </div>
+
+    <!-- HOSPITALES -->
+    <div class="section">
+      <h3>🏥 Hospitales — Puntos Estratégicos</h3>
+      <ul class="hosp-list">
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Central "Dr. Plácido Rodríguez Rivero"</div>
+          <div class="hosp-loc">📍 San Felipe, Yaracuy — ZONA EPICENTRO</div>
+          <div class="hosp-st st-warn">⚠ A evaluar — posibles daños estructurales</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Dr. Tiburcio Garrido</div>
+          <div class="hosp-loc">📍 Chivacoa, Yaracuy (27 km del epicentro)</div>
+          <div class="hosp-st st-warn">⚠ Posible punto de triaje regional</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Padre Oliveros</div>
+          <div class="hosp-loc">📍 Nirgua, Yaracuy (29 km del epicentro)</div>
+          <div class="hosp-st st-unk">? Estado no confirmado</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Universitario de Caracas (HUC)</div>
+          <div class="hosp-loc">📍 Ciudad Universitaria, Caracas</div>
+          <div class="hosp-st st-ok">✓ Referencia nacional — activo</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Vargas de Caracas</div>
+          <div class="hosp-loc">📍 Parroquia La Pastora, Caracas</div>
+          <div class="hosp-st st-ok">✓ Centro histórico — activo</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Dr. Miguel Pérez Carreño</div>
+          <div class="hosp-loc">📍 La Yaguara, Caracas Oeste</div>
+          <div class="hosp-st st-ok">✓ Referencia IVSS — activo</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. de Niños J.M. de los Ríos</div>
+          <div class="hosp-loc">📍 Caracas Centro — Pediatría</div>
+          <div class="hosp-st st-unk">? Estado pendiente confirmación</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Hosp. Gral. Lídice "Dr. Jesús Yerena"</div>
+          <div class="hosp-loc">📍 Lídice, Caracas</div>
+          <div class="hosp-st st-ok">✓ Operativo reportado</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name">Cruz Roja Venezolana — Yaracuy</div>
+          <div class="hosp-loc">📍 Cantarrana, San Felipe</div>
+          <div class="hosp-st st-warn">⚠ Activada — punto de triaje</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- LEYENDA -->
+    <div class="legend">
+      <h3>Leyenda</h3>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--red);box-shadow:0 0 6px var(--red)"></div>Epicentro sísmico</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--red);opacity:.35"></div>Zona impacto crítico</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--orange);opacity:.35"></div>Zona impacto alto</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--yellow);opacity:.35"></div>Zona impacto medio</div>
+      <div class="leg-item">🏥 Hospital / Centro médico</div>
+      <div class="leg-item">✈️ Aeropuerto dañado</div>
+    </div>
+
+    <!-- FUENTES -->
+    <div class="source-note">
+      <strong>Fuentes:</strong> <a href="https://earthquake.usgs.gov/earthquakes/eventpage/atth5pbk/region-info" target="_blank">USGS</a> ·
+      <a href="http://www.funvisis.gob.ve/" target="_blank">FUNVISIS</a> ·
+      <a href="https://cnnespanol.cnn.com/2026/06/24/venezuela/live-news/terremoto-sismo-en-vivo-noticias-caracas-orix" target="_blank">CNN ES</a> ·
+      <a href="https://www.infobae.com/venezuela/2026/06/24/un-terremoto-de-magnitud-71-sacudio-varias-regiones-de-venezuela-hay-alerta-de-tsunami-para-aruba-curazao-y-bonaire/" target="_blank">Infobae</a> ·
+      <a href="https://en.wikipedia.org/wiki/2026_Venezuela_earthquakes" target="_blank">Wikipedia</a><br>
+      Actualizado: 24 Jun 2026 · Operaciones activas
+    </div>
+  </aside>
+</div>
+
+<!-- Mobile toggle button -->
+<button id="sidebar-toggle" aria-label="Abrir panel de análisis" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<!-- Leaflet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// ── INIT MAP ──────────────────────────────────────────────────────────────
+const map = L.map('map', { center: [10.1, -67.8], zoom: 7, zoomControl: true });
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 18
+}).addTo(map);
+
+// ── ICON FACTORIES ────────────────────────────────────────────────────────
+const mkDot = (color, size = 20, glow = false) => L.divIcon({
+  className: '',
+  html: `<div style="width:${size}px;height:${size}px;background:${color};border-radius:50%;border:2.5px solid #fff;${glow ? `box-shadow:0 0 12px ${color},0 0 24px ${color}` : 'box-shadow:0 2px 6px rgba(0,0,0,.5)'};"></div>`,
+  iconSize: [size, size], iconAnchor: [size / 2, size / 2]
+});
+
+const mkEmoji = (e, bg) => L.divIcon({
+  className: '',
+  html: `<div style="width:26px;height:26px;background:${bg};border-radius:5px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.5);">${e}</div>`,
+  iconSize: [26, 26], iconAnchor: [13, 13]
+});
+
+const mkStar = () => L.divIcon({
+  className: '',
+  html: `<div style="font-size:30px;line-height:1;filter:drop-shadow(0 0 8px #f43f5e);">💥</div>`,
+  iconSize: [30, 30], iconAnchor: [15, 15]
+});
+
+// ── EPICENTROS ────────────────────────────────────────────────────────────
+L.marker([10.40, -68.50], { icon: mkDot('#f97316', 22, true) }).addTo(map)
+  .bindPopup(`<div class="pop-title">⚡ Precursor — Mw 7.2</div><div class="pop-body">📅 24 Jun 2026 · 22:04 UTC<br>📍 24 km ENE de San Felipe, Yaracuy<br>🏔 Profundidad: 21.9 km · Mun. Veroes</div><span class="pop-badge pb-epi">FORESHOCK Mw 7.2</span>`);
+
+L.marker([10.51, -68.73], { icon: mkStar() }).addTo(map)
+  .bindPopup(`<div class="pop-title">💥 Sismo Principal — Mw 7.5</div><div class="pop-body">📅 24 Jun 2026 · 22:04:39 UTC (+39 seg)<br>📍 SE de Yumare, Yaracuy<br>🏔 Profundidad: 10 km (superficial)<br>⚠️ PAGER: P(fatalidades &gt;100k) = 30%</div><span class="pop-badge pb-epi">MAINSHOCK Mw 7.5</span>`);
+
+// ── CÍRCULOS DE IMPACTO ───────────────────────────────────────────────────
+const ring = (ll, r, col, op, dash = '') => L.circle(ll, { radius: r, color: col, fillColor: col, fillOpacity: op, weight: 1.5, dashArray: dash }).addTo(map);
+
+ring([10.45, -68.62], 65000, '#f43f5e', 0.13, '6,5');  // epicentro
+ring([10.480, -66.904], 22000, '#f43f5e', 0.11);         // Caracas
+ring([10.30, -68.00],  38000, '#f97316', 0.09);          // Carabobo
+ring([10.25, -67.60],  28000, '#f97316', 0.09);          // Aragua
+ring([10.06, -69.32],  22000, '#eab308', 0.07);          // Lara
+ring([10.35, -66.40],  18000, '#eab308', 0.07);          // Miranda
+
+// ── CIUDADES ──────────────────────────────────────────────────────────────
+const cities = [
+  { ll:[10.480,-66.904], n:'CARACAS',     c:'#f43f5e', lv:'CRÍTICO', note:'🔴 Altamira y Los Palos Grandes: colapsos confirmados. Gas cortado. Edificios destruidos en sureste.' },
+  { ll:[10.335,-68.745], n:'San Felipe',  c:'#f43f5e', lv:'CRÍTICO', note:'🔴 Capital de Yaracuy. Epicentro cercano. Daños severos esperados.' },
+  { ll:[10.510,-68.730], n:'Yumare',      c:'#f43f5e', lv:'EPICENTRO',note:'💥 A 10 km del epicentro Mw 7.5. Zona de mayor impacto físico.' },
+  { ll:[10.172,-67.993], n:'Valencia',    c:'#f97316', lv:'ALTO',    note:'🟠 Carabobo. Edificios dañados reportados.' },
+  { ll:[10.254,-67.596], n:'Maracay',     c:'#f97316', lv:'ALTO',    note:'🟠 Aragua. Daños estructurales confirmados.' },
+  { ll:[10.601,-66.930], n:'La Guaira',   c:'#f97316', lv:'ALTO',    note:'🟠 Aeropuerto Maiquetía clausurado. Vuelos cancelados.' },
+  { ll:[10.064,-69.322], n:'Barquisimeto',c:'#eab308', lv:'MEDIO',   note:'🟡 Lara. Sismo sentido con fuerza. Daños menores.' },
+  { ll:[10.480,-68.010], n:'Morón',       c:'#f97316', lv:'ALTO',    note:'🟠 Carabobo. Epicentro secundario reportado.' },
+  { ll:[9.319, -70.638], n:'Mérida',      c:'#eab308', lv:'BAJO',    note:'🟡 Sismo sentido. Sin daños graves reportados.' },
+];
+
+cities.forEach(({ ll, n, c, lv, note }) => {
+  const lvClass = (lv === 'CRÍTICO' || lv === 'EPICENTRO') ? 'pb-crit' : lv === 'ALTO' ? 'pb-crit' : 'pb-aff';
+  L.circleMarker(ll, {
+    radius: lv === 'EPICENTRO' ? 9 : 7,
+    color: c, fillColor: c, fillOpacity: 0.85, weight: 2
+  }).addTo(map)
+    .bindPopup(`<div class="pop-title">🏙 ${n}</div><div class="pop-body">${note}</div><span class="pop-badge ${lvClass}">${lv}</span>`);
+
+  L.tooltip({ permanent: true, direction: 'right', className: 'city-tip' })
+    .setContent(`<span style="color:${c};text-shadow:0 0 4px #000,0 0 4px #000">${n}</span>`)
+    .setLatLng(ll).addTo(map);
+});
+
+// ── AEROPUERTO ────────────────────────────────────────────────────────────
+L.marker([10.601, -66.991], { icon: mkEmoji('✈️', '#5b21b6') }).addTo(map)
+  .bindPopup(`<div class="pop-title">✈️ Aeropuerto Internacional Simón Bolívar</div><div class="pop-body">📍 Maiquetía, La Guaira<br>❌ CLAUSURADO — Daños estructurales confirmados<br>Vuelos desviados a aeropuertos alternativos</div><span class="pop-badge pb-air">INFRAESTRUCTURA DAÑADA</span>`);
+
+// ── HOSPITALES ────────────────────────────────────────────────────────────
+const hospitals = [
+  { ll:[10.335,-68.745], n:"Hosp. Central 'Dr. Plácido Rodríguez Rivero'", loc:"San Felipe, Yaracuy — EPICENTRO",   st:"⚠️ Zona crítica — evaluar urgente" },
+  { ll:[10.158,-68.898], n:"Hosp. Dr. Tiburcio Garrido",                  loc:"Chivacoa, Yaracuy (27 km)",           st:"⚠️ Posibles daños — punto triaje" },
+  { ll:[10.155,-68.567], n:"Hosp. Padre Oliveros",                         loc:"Nirgua, Yaracuy (29 km)",             st:"? Estado no confirmado" },
+  { ll:[10.492,-66.899], n:"Hosp. Universitario de Caracas (HUC)",         loc:"Ciudad Universitaria, Caracas",       st:"✅ Referencia nacional — activo" },
+  { ll:[10.493,-66.898], n:"Hosp. Vargas de Caracas",                      loc:"Parroquia La Pastora, Caracas",       st:"✅ Activo — centro histórico" },
+  { ll:[10.460,-67.020], n:"Hosp. Dr. Miguel Pérez Carreño",               loc:"La Yaguara, Caracas Oeste",           st:"✅ IVSS — referencia activo" },
+  { ll:[10.485,-66.910], n:"Hosp. de Niños J.M. de los Ríos",              loc:"Caracas Centro — Pediatría",          st:"? Pendiente confirmación" },
+  { ll:[10.490,-66.940], n:"Hosp. Gral. Lídice 'Dr. Jesús Yerena'",        loc:"Lídice, Caracas",                    st:"✅ Operativo reportado" },
+  { ll:[10.330,-68.750], n:"Cruz Roja Venezolana — Yaracuy",               loc:"Cantarrana, San Felipe",              st:"⚠️ Activada — triaje de emergencia" },
+];
+
+hospitals.forEach(({ ll, n, loc, st }) => {
+  L.marker(ll, { icon: mkEmoji('🏥', '#0369a1') }).addTo(map)
+    .bindPopup(`<div class="pop-title">🏥 ${n}</div><div class="pop-body">📍 ${loc}<br>${st}</div><span class="pop-badge pb-hosp">PUNTO ESTRATÉGICO</span>`);
+});
+
+// ── PULSE RING en epicentro ───────────────────────────────────────────────
+L.circle([10.51, -68.73], { radius: 8000, color: '#f43f5e', fillColor: '#f43f5e', fillOpacity: 0.55, weight: 3 }).addTo(map);
+</script>
+</body>
+</html>
