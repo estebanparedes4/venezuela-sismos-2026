@@ -369,6 +369,45 @@
       </ul>
     </div>
 
+    <!-- CENTROS IVSS -->
+    <div class="section">
+      <h3>➕ Centros IVSS — Red Sanitaria (21 centros)</h3>
+      <div style="font-size:9.5px;color:var(--text-3);margin-bottom:8px">Fuente: www.ivss.gov.ve · Estados: Yaracuy, Carabobo, Aragua, Lara</div>
+      <ul class="hosp-list">
+        <li class="hosp-item">
+          <div class="hosp-name" style="color:#4ade80">Ambulatorio Chivacoa</div>
+          <div class="hosp-loc">📍 Yaracuy — Av. Bicentenario, Sector Pueblo Nuevo · MMI VIII–IX</div>
+          <div class="hosp-st st-warn">⚠ Zona epicentro — verificar operatividad · (0251) 883.02.34</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name" style="color:#4ade80">Ambulatorio Morón (IVSS)</div>
+          <div class="hosp-loc">📍 Carabobo — Colina de Pequiven, Morón · MMI VII–VIII</div>
+          <div class="hosp-st st-ok">✓ ~80 km epicentro · (0242) 372.00.41</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name" style="color:#4ade80">Hosp. Dr. J.F. Molina Sierra (IVSS)</div>
+          <div class="hosp-loc">📍 Carabobo — Puerto Cabello · MMI VII–VIII</div>
+          <div class="hosp-st st-ok">✓ Hospital de referencia · (0242) 361.46.10</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name" style="color:#4ade80">Hospital Dr. Ángel Larralde (IVSS)</div>
+          <div class="hosp-loc">📍 Carabobo — Bárbula, Valencia · MMI VII</div>
+          <div class="hosp-st st-ok">✓ Especialidades · (0241) 867.29.23</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name" style="color:#4ade80">Hosp. Dr. J.M. Carabaño Tosta (IVSS)</div>
+          <div class="hosp-loc">📍 Aragua — Maracay · MMI VII</div>
+          <div class="hosp-st st-ok">✓ Hospital regional · (0243) 236.53.76</div>
+        </li>
+        <li class="hosp-item">
+          <div class="hosp-name" style="color:#4ade80">Hosp. Dr. Pastor Oropeza Riera (IVSS)</div>
+          <div class="hosp-loc">📍 Lara — Barquisimeto · MMI V–VI</div>
+          <div class="hosp-st st-ok">✓ Referencia Lara · (0251) 442.10.89</div>
+        </li>
+      </ul>
+      <div style="font-size:9px;color:var(--text-3);margin-top:6px">+ 15 ambulatorios adicionales visibles en el mapa (➕ verde) · Carabobo, Aragua, Lara</div>
+    </div>
+
     <!-- LEYENDA MAPA -->
     <div class="legend">
       <h3>Leyenda del Mapa</h3>
@@ -377,7 +416,8 @@
       <div class="leg-item"><div class="leg-dot" style="background:var(--red);opacity:.45"></div>Zona impacto crítico (MMI IX–X)</div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--orange);opacity:.4"></div>Zona impacto alto (MMI VII–VIII)</div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--yellow);opacity:.35"></div>Zona impacto medio (MMI V–VI)</div>
-      <div class="leg-item">🏥 Hospital / Punto estratégico</div>
+      <div class="leg-item">🏥 Hospital / Punto estratégico (azul)</div>
+      <div class="leg-item"><div style="width:18px;height:18px;background:#16a34a;border-radius:50%;border:2px solid #fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;margin-right:6px;">➕</div>Centro IVSS / Ambulatorio (verde)</div>
       <div class="leg-item">✈️ Aeropuerto (clausurado)</div>
     </div>
 
@@ -673,6 +713,47 @@ const hospitals = [
 hospitals.forEach(({ ll, n, loc, st, mmi }) => {
   L.marker(ll, { icon: mkEmoji('🏥', '#0369a1') }).addTo(map)
     .bindPopup(`<div class="pop-title">🏥 ${n}</div><div class="pop-body">📍 ${loc}<br>${st}</div><span class="pop-badge pb-hosp">PUNTO ESTRATÉGICO · MMI ${mmi}</span>`);
+});
+
+// ── CENTROS IVSS / AMBULATORIOS (fuente: www.ivss.gov.ve / ivss.gob.ve) ────
+// Estados cubiertos: Yaracuy (epicentro), Carabobo, Aragua, Lara
+const mkIvssIcon = () => L.divIcon({
+  className: '',
+  html: `<div style="width:22px;height:22px;background:#16a34a;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.6);" title="Centro IVSS">➕</div>`,
+  iconSize: [22, 22], iconAnchor: [11, 11]
+});
+
+const ivssCenters = [
+  // YARACUY — Zona epicentro MMI VIII-IX
+  { ll:[10.307,-68.890], n:"Ambulatorio Chivacoa",                      est:"Yaracuy",  tipo:"Ambulatorio", tel:"(0251) 883.02.34", dir:"Av. Bicentenario, Sector Pueblo Nuevo, Chivacoa",           mmi:"VIII–IX" },
+  // CARABOBO — MMI VII-VIII
+  { ll:[10.195,-68.015], n:"Hospital Dr. Ángel Larralde",               est:"Carabobo", tipo:"Hospital",    tel:"(0241) 867.29.23", dir:"Altos de la Colina Psiquiatría de Bárbula, Valencia",       mmi:"VII" },
+  { ll:[10.480,-68.012], n:"Hosp. Dr. José Francisco Molina Sierra",    est:"Carabobo", tipo:"Hospital",    tel:"(0242) 361.46.10", dir:"Sector Rancho Grande, Puerto Cabello",                      mmi:"VII–VIII" },
+  { ll:[10.186,-67.980], n:"Ambulatorio Dr. Luis Guada Lacau",          est:"Carabobo", tipo:"Ambulatorio", tel:"(0241) 868.74.13", dir:"Urb. Caprenco, Valencia",                                  mmi:"VII" },
+  { ll:[10.165,-68.005], n:"Ambulatorio Dr. Emiliano Azcunez",          est:"Carabobo", tipo:"Ambulatorio", tel:"(0241) 831.34.15", dir:"Av. Lisandro Alvarado, Valencia",                          mmi:"VII" },
+  { ll:[10.247,-68.040], n:"Ambulatorio Paraparal",                     est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 581.35.85", dir:"Urb. Paraparal, Sector Rosa Linda, Los Guayos",            mmi:"VII" },
+  { ll:[10.472,-68.010], n:"Ambulatorio Santa Rosa",                    est:"Carabobo", tipo:"Ambulatorio", tel:"(0242) 364.05.14", dir:"Urb. Santa Cruz, Zona Industrial, Puerto Cabello",         mmi:"VII–VIII" },
+  { ll:[10.489,-68.195], n:"Ambulatorio Morón",                         est:"Carabobo", tipo:"Ambulatorio", tel:"(0242) 372.00.41", dir:"Colina de Pequiven, final calle Nº4, Morón",               mmi:"VII–VIII" },
+  { ll:[10.252,-67.782], n:"Ambulatorio Dr. Luis Izaguirre Rodríguez",  est:"Carabobo", tipo:"Ambulatorio", tel:"(0243) 263.20.66", dir:"Barrio Mariscal Sucre, Mariara",                           mmi:"VI–VII" },
+  { ll:[10.225,-68.120], n:"Ambulatorio Dra. Bélgica Tovar Herrera",   est:"Carabobo", tipo:"Ambulatorio", tel:"(0241) 894.18.04", dir:"Urb. Pocaterra, Av. 6, Tucuyito",                          mmi:"VII" },
+  { ll:[10.217,-67.773], n:"Ambulatorio Guacara-Yagua",                 est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 571.68.14", dir:"Calle Sucre c/Briceño, carretera ppal de Yagua",          mmi:"VI–VII" },
+  { ll:[10.273,-67.757], n:"Ambulatorio Dr. Luis Rodríguez Panacci",    est:"Carabobo", tipo:"Ambulatorio", tel:"(0245) 552.06.94", dir:"Calle Ppal José Tomas Gallardo, San Joaquín",              mmi:"VI" },
+  // ARAGUA — MMI VI-VII
+  { ll:[10.244,-67.595], n:"Hospital Dr. José María Carabaño Tosta",   est:"Aragua",   tipo:"Hospital",    tel:"(0243) 236.53.76", dir:"Av. Principal de San José, Maracay",                       mmi:"VII" },
+  { ll:[10.212,-67.573], n:"Hospital José Antonio Vargas",              est:"Aragua",   tipo:"Hospital",    tel:"(0243) 267.30.80", dir:"Urb. La Ovallera, Palo Negro",                             mmi:"VI–VII" },
+  { ll:[10.267,-67.652], n:"Centro Ambulatorio El Limón",               est:"Aragua",   tipo:"Ambulatorio", tel:"(0243) 283.30.09", dir:"Av. Universidad c/Av. Caña de Azúcar, El Limón",          mmi:"VII" },
+  { ll:[10.248,-67.592], n:"Centro Ambulatorio Negra Matea",            est:"Aragua",   tipo:"Ambulatorio", tel:"(0243) 554.81.34", dir:"Calle Pichincha, Santa Rosa, Maracay",                     mmi:"VII" },
+  { ll:[10.233,-67.335], n:"Centro Ambulatorio Dr. Luis Richard Díaz",  est:"Aragua",   tipo:"Ambulatorio", tel:"(0244) 321.24.64", dir:"Urb. Las Mercedes, La Victoria",                          mmi:"V–VI" },
+  { ll:[10.185,-67.456], n:"Centro Ambulatorio Francisco Chico Matos",  est:"Aragua",   tipo:"Ambulatorio", tel:"(0244) 396.34.90", dir:"Zona Industrial Corinsa, Cagua",                          mmi:"V–VI" },
+  // LARA — MMI V-VI (oeste del epicentro)
+  { ll:[10.073,-69.330], n:"Hospital Dr. Pastor Oropeza Riera",         est:"Lara",     tipo:"Hospital",    tel:"(0251) 442.10.89", dir:"Prolongación Av. La Salle, Barquisimeto",                  mmi:"V–VI" },
+  { ll:[10.062,-69.322], n:"Hospital Dr. Juan Daza Pereira",            est:"Lara",     tipo:"Hospital",    tel:"(0251) 445.45.42", dir:"Carrera 13 entre calle 49 y 50, Barquisimeto",             mmi:"V–VI" },
+  { ll:[10.075,-69.310], n:"Ambulatorio Dr. Rafael Vicente Andrade",    est:"Lara",     tipo:"Ambulatorio", tel:"(0251) 445.39.23", dir:"Barrio Unión, Barquisimeto",                               mmi:"V–VI" },
+];
+
+ivssCenters.forEach(({ ll, n, est, tipo, tel, dir, mmi }) => {
+  L.marker(ll, { icon: mkIvssIcon() }).addTo(map)
+    .bindPopup(`<div class="pop-title">➕ ${n}</div><div class="pop-body">📍 ${dir}<br><b>Estado:</b> ${est}<br><b>Tipo:</b> ${tipo} IVSS<br>📞 ${tel}<br><b>Zona MMI:</b> ${mmi}</div><span class="pop-badge" style="background:#16a34a;color:#fff;font-weight:800">IVSS · ${est} · MMI ${mmi}</span>`);
 });
 </script>
 </body>
