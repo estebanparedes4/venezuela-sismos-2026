@@ -424,7 +424,7 @@
 
 <div id="alert">
   🚨 <strong>EMERGENCIA ACTIVA:</strong>&nbsp;
-  🔴 188 FALLECIDOS · 1.520 HERIDOS · 157 DESAPARECIDOS (balance oficial · Jorge Rodríguez, AN) · 138 RÉPLICAS registradas · 🔴 LA GUAIRA: CATÁSTROFE HUMANITARIA — CATIA LA MAR DEVASTADA · Aeropuerto Maiquetía clausurado · ⛪ Cruz Iglesia San Juan derrumbada · 🏥 Hospitales Caracas en emergencia máxima · 🏚 411 ESTRUCTURAS DAÑADAS: 123 colapsos totales · 130 severos · 158 parciales (terremotovenezuela.com) · Movistar sin internet · Digitel gratis 48h · USGS PAGER: entre 10.000 y 100.000 víctimas estimadas
+  🔴 235 FALLECIDOS · 4.300 HERIDOS · 157 DESAPARECIDOS (balance actualizado · Telemundo/Infobae/A24) · 138 RÉPLICAS registradas · 🔴 LA GUAIRA: CATÁSTROFE HUMANITARIA — CATIA LA MAR DEVASTADA · Aeropuerto Maiquetía clausurado · ⛪ Cruz Iglesia San Juan derrumbada · 🏥 Hospitales Caracas en emergencia máxima · 🏚 411 ESTRUCTURAS DAÑADAS: 123 colapsos totales · 130 severos · 158 parciales (terremotovenezuela.com) · Movistar sin internet · Digitel gratis 48h · USGS PAGER: entre 10.000 y 100.000 víctimas estimadas
 </div>
 
 <!-- ── NEWS TICKER BAR ─────────────────────────────── -->
@@ -1094,7 +1094,7 @@
       <a href="https://www.reuters.com/world/americas/venezuelas-rodriguez-declares-state-emergency-after-earthquake-does-not-give-2026-06-25/" target="_blank">Reuters</a> ·
       <a href="https://www.infobae.com/venezuela/2026/06/24/un-terremoto-de-magnitud-71-sacudio-varias-regiones-de-venezuela-hay-alerta-de-tsunami-para-aruba-curazao-y-bonaire/" target="_blank">Infobae</a> ·
       <a href="https://en.wikipedia.org/wiki/2026_Venezuela_earthquakes" target="_blank">Wikipedia</a><br>
-      Actualizado: 25 Jun 2026 · Operaciones activas · <strong style="color:#f87171">188 fallecidos · 1.520 heridos · 157 desaparecidos</strong> (balance oficial Jorge Rodríguez, AN)
+      Actualizado: 25 Jun 2026 · Operaciones activas · <strong style="color:#f87171">235 fallecidos · 4.300 heridos · 157 desaparecidos</strong> (balance actualizado · Telemundo/Infobae/A24 · 25 Jun 2026)
     </div>
   </aside>
 </div>
@@ -1932,6 +1932,7 @@ layerCtrl.onAdd = function(m) {
 
 // ── NOTICIAS DE CONTINGENCIA ────────────────────────────────────────────────
 const NOTICIAS = [
+  { hora:'25/06/2026 · BALANCE ACTUALIZADO', titulo:'🔴 235 FALLECIDOS · 4.300 HERIDOS · 157 DESAPARECIDOS — balance revisado oficial', resumen:'El Gobierno venezolano elevó el balance a 235 fallecidos, 4.300 heridos y 157 desaparecidos. La cifra supera ampliamente el reporte previo de 188 víctimas mortales. La Guaira sigue siendo la zona más devastada. Fuentes: Telemundo, Infobae, A24.', url:'https://www.telemundo.com/noticias/noticias-telemundo/desastres-naturales/live-blog/dos-terremotos-magnitud-superior-7-sacuden-venezuela-segundos-rcna351682', nuevo:true },
   { hora:'25/06/2026 · AYUDA INTERNACIONAL', titulo:'🇧🇷 BRASIL envía carguero militar con 36 bomberos + 9 toneladas de equipo — parte el viernes 26/06', resumen:'El presidente Luiz Inácio Lula da Silva ordenó el despliegue de una misión humanitaria de búsqueda y rescate en Venezuela: 36 bomberos especializados, 4 técnicos de la Defensa Civil, 4 de la Agencia Nacional de Telecomunicaciones y 9 toneladas de equipos de rescate, trasladados en un carguero militar. La misión parte el viernes 26 de junio. Fuentes: Milenio, TV Azteca.', url:'https://www.tvazteca.com/aztecanoticias/terremoto-en-venezuela-ultimas-noticias-hoy-25-junio-2026-muertos-heridos-danos/', nuevo:true },
   { hora:'25/06/2026 · AYUDA INTERNACIONAL', titulo:'🇫🇷 FRANCIA despliega 85 socorristas especializados en salvamento y desescombro', resumen:'El gobierno de Francia anunció el despliegue inmediato de un equipo de 85 rescatistas especializados en salvamento y desescombro para apoyar las labores de búsqueda en Venezuela. Francia se suma a España, México, Colombia, Chile, Portugal, Países Bajos, Alemania, Italia y EE.UU. en la mayor respuesta internacional de ayuda al país caribeño. Fuentes: Milenio, La Patilla.', url:'https://lapatilla.com/2026/06/25/el-mundo-se-vuelca-sobre-venezuela-con-equipos-de-rescate-y-ayuda-humanitaria/', nuevo:true },
   { hora:'25/06/2026 · VÍCTIMAS EXTRANJERAS', titulo:'🇵🇹 PORTUGAL confirma 2 MUERTOS y 56 DESAPARECIDOS — todos en La Guaira', resumen:'El gobierno portugués confirmó la muerte de dos ciudadanos lusos en los terremotos de Venezuela y elevó a 56 el número de portugueses o lusodescendientes desaparecidos, todos localizados en la zona costera de La Guaira, la más devastada. El primer fallecido fue rescatado con vida de los escombros pero murió durante su traslado al hospital. Fuentes: Crítica Panamá, Unión Radio Venezuela.', url:'https://unionradio.net/portugal-confirma-dos-connacionales-muertos-y-56-desaparecidos/', nuevo:true },  
@@ -1957,7 +1958,7 @@ const NOTICIAS = [
     titulo: '🔴 188 FALLECIDOS · 1.520 HERIDOS · 157 DESAPARECIDOS — Jorge Rodríguez (AN)',
     resumen: 'Jorge Rodríguez, presidente de la Asamblea Nacional, actualizó el balance oficial: 188 fallecidos, 1.520 heridos y 157 desaparecidos. Más de 200 personas continúan atrapadas bajo los escombros. Fuentes: CNN, Al Jazeera, NBC News.',
     url: 'https://www.aljazeera.com/news/2026/6/25/venezuela-earthquakes-kill-at-least-188-people-injure-1520',
-    nuevo: true
+    nuevo: false
   },
   {
     hora: '25/06/2026 · RESCATE LA GUAIRA',
